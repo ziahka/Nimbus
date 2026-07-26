@@ -20,7 +20,7 @@ import re
 import string
 import random
 
-from herokutl.tl.types import Message
+from nimbustl.tl.types import Message
 
 from .. import loader, utils
 from ..inline.types import BotInlineMessage, InlineCall

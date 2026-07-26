@@ -24,7 +24,7 @@ import string
 import time
 from pathlib import Path
 
-from herokutl.errors import (
+from nimbustl.errors import (
     FloodWaitError,
     PasswordHashInvalidError,
     PhoneCodeExpiredError,
@@ -32,10 +32,10 @@ from herokutl.errors import (
     PhoneNumberInvalidError,
     SessionPasswordNeededError,
 )
-from herokutl.sessions import MemorySession, SQLiteSession
-from herokutl.tl.custom import Message
-from herokutl.tl.types import User
-from herokutl.utils import parse_phone
+from nimbustl.sessions import MemorySession, SQLiteSession
+from nimbustl.tl.custom import Message
+from nimbustl.tl.types import User
+from nimbustl.utils import parse_phone
 
 from .. import loader, main, security, utils
 from ..loader import LOADED_MODULES_PATH

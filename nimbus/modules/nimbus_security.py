@@ -22,10 +22,10 @@ import time
 import typing
 from collections.abc import Callable
 
-from herokutl.custom import Message
-from herokutl.hints import EntityLike
-from herokutl.tl.types import PeerUser, User
-from herokutl.utils import get_display_name
+from nimbustl.custom import Message
+from nimbustl.hints import EntityLike
+from nimbustl.tl.types import PeerUser, User
+from nimbustl.utils import get_display_name
 
 from .. import loader, main, security, utils
 from ..inline.types import InlineCall, InlineMessage

@@ -32,11 +32,11 @@ import typing
 import aiohttp
 import git
 from git import GitCommandError, Repo
-from herokutl.tl.functions.messages import (
+from nimbustl.tl.functions.messages import (
     GetDialogFiltersRequest,
     UpdateDialogFilterRequest,
 )
-from herokutl.tl.types import (
+from nimbustl.tl.types import (
     DialogFilter,
     InputBotInlineMessageID,
     InputBotInlineMessageID64,

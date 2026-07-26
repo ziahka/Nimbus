@@ -25,9 +25,9 @@ import time
 import traceback
 import typing
 
-from herokutl.errors.rpcerrorlist import FloodWaitError
-from herokutl.errors.rpcerrorlist import ChatSendInlineForbiddenError
-from herokutl.tl.types import Message
+from nimbustl.errors.rpcerrorlist import FloodWaitError
+from nimbustl.errors.rpcerrorlist import ChatSendInlineForbiddenError
+from nimbustl.tl.types import Message
 
 from .. import main, utils
 from ..types import NimbusReplyMarkup

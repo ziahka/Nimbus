@@ -58,7 +58,8 @@ def restart():
 
     if "NIMBUS_DO_NOT_RESTART2" in os.environ:
         print(
-            "herokutl version 1.0.2 or higher is required, use `pip install heroku-tl-new -U` for update."
+            "nimbustl version 1.0.2 or higher is required, run "
+            "`pip install --force-reinstall ./vendor/nimbustl` to rebuild it."
         )
         sys.exit(0)
 

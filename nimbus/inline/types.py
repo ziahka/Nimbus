@@ -1,7 +1,7 @@
 import logging
 import typing
 
-from herokutl.tl import types
+from nimbustl.tl import types
 
 NimbusReplyMarkup = typing.Union[list[list[dict]], list[dict], dict]
 

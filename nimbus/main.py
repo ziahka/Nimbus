@@ -39,8 +39,8 @@ from getpass import getpass
 from pathlib import Path
 
 import aiohttp
-from herokutl import events
-from herokutl.errors import (
+from nimbustl import events
+from nimbustl.errors import (
     ApiIdInvalidError,
     AuthKeyDuplicatedError,
     FloodWaitError,
@@ -48,19 +48,19 @@ from herokutl.errors import (
     PhoneNumberInvalidError,
     SessionPasswordNeededError,
 )
-from herokutl.errors.rpcerrorlist import (
+from nimbustl.errors.rpcerrorlist import (
     AuthKeyUnregisteredError,
     YouBlockedUserError,
 )
-from herokutl.network.connection import (
+from nimbustl.network.connection import (
     ConnectionTcpFull,
     ConnectionTcpMTProxyRandomizedIntermediate,
 )
-from herokutl.password import compute_check
-from herokutl.sessions import MemorySession, SQLiteSession
-from herokutl.tl.functions.account import GetPasswordRequest
-from herokutl.tl.functions.auth import CheckPasswordRequest
-from herokutl.tl.functions.contacts import UnblockRequest
+from nimbustl.password import compute_check
+from nimbustl.sessions import MemorySession, SQLiteSession
+from nimbustl.tl.functions.account import GetPasswordRequest
+from nimbustl.tl.functions.auth import CheckPasswordRequest
+from nimbustl.tl.functions.contacts import UnblockRequest
 
 from . import database, loader, utils, version
 from ._internal import print_banner, restart

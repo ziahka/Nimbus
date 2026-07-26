@@ -23,8 +23,8 @@ import random
 import re
 import typing
 
-from herokutl.errors.rpcerrorlist import YouBlockedUserError
-from herokutl.tl.functions.contacts import UnblockRequest
+from nimbustl.errors.rpcerrorlist import YouBlockedUserError
+from nimbustl.tl.functions.contacts import UnblockRequest
 
 from .. import utils
 from .._internal import fw_protect

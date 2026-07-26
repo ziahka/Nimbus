@@ -23,8 +23,8 @@ import functools
 import typing
 from math import ceil
 
-from herokutl.tl.types import Message
-from herokutl.extensions import html
+from nimbustl.tl.types import Message
+from nimbustl.extensions import html
 
 from .. import loader, translations, utils
 from ..inline.types import InlineCall

@@ -168,9 +168,6 @@ config.json
 
 # Nimbus-specific rules
 .nimbus/
-.apt/
-.profile.d/
-vendor/
 Pipfile.lock
 
 nimbus.log.*

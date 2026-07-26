@@ -21,20 +21,20 @@ import sys
 import typing
 import warnings
 
-import herokutl
-from herokutl import hints
-from herokutl.tl.functions.channels import (
+import nimbustl
+from nimbustl import hints
+from nimbustl.tl.functions.channels import (
     EditAdminRequest,
     InviteToChannelRequest,
 )
-from herokutl.tl.types import (
+from nimbustl.tl.types import (
     ChatAdminRights,
 )
 
 from ..tl_cache import CustomTelegramClient
 from ..types import ListLike
 
-parser = herokutl.utils.sanitize_parse_mode("html")
+parser = nimbustl.utils.sanitize_parse_mode("html")
 logger = logging.getLogger(__name__)
 
 

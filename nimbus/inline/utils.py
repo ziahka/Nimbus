@@ -29,8 +29,8 @@ from collections.abc import Callable
 from copy import deepcopy
 from urllib.parse import urlparse
 
-from herokutl.errors.rpcbaseerrors import RPCError
-from herokutl.errors.rpcerrorlist import (
+from nimbustl.errors.rpcbaseerrors import RPCError
+from nimbustl.errors.rpcerrorlist import (
     FloodWaitError,
     MediaPrevInvalidError,
     MessageNotModifiedError,

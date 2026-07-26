@@ -36,9 +36,9 @@ from dataclasses import dataclass, field
 from importlib.abc import SourceLoader
 
 import requests
-from herokutl.hints import EntityLike
-from herokutl.tl.functions.account import UpdateNotifySettingsRequest
-from herokutl.tl.types import (
+from nimbustl.hints import EntityLike
+from nimbustl.tl.functions.account import UpdateNotifySettingsRequest
+from nimbustl.tl.types import (
     Channel,
     ChannelForbidden,
     ChannelFull,

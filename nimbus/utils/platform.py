@@ -16,9 +16,9 @@ import os
 import time
 from datetime import timedelta
 
-import herokutl
+import nimbustl
 
-parser = herokutl.utils.sanitize_parse_mode("html")
+parser = nimbustl.utils.sanitize_parse_mode("html")
 logger = logging.getLogger(__name__)
 
 IS_DOCKER = "DOCKER" in os.environ

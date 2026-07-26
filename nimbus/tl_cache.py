@@ -23,18 +23,18 @@ import time
 import typing
 from collections.abc import Callable
 
-from herokutl import TelegramClient
-from herokutl import helpers
-from herokutl._updates import ChannelState, Entity, EntityType, SessionState
-from herokutl.errors.rpcerrorlist import TopicDeletedError
-from herokutl.hints import EntityLike
-from herokutl.network import MTProtoSender
-from herokutl.tl import functions
-from herokutl.tl.alltlobjects import LAYER
-from herokutl.tl.functions.channels import GetFullChannelRequest
-from herokutl.tl.functions.users import GetFullUserRequest
-from herokutl.tl.tlobject import TLRequest
-from herokutl.tl.types import (
+from nimbustl import TelegramClient
+from nimbustl import helpers
+from nimbustl._updates import ChannelState, Entity, EntityType, SessionState
+from nimbustl.errors.rpcerrorlist import TopicDeletedError
+from nimbustl.hints import EntityLike
+from nimbustl.network import MTProtoSender
+from nimbustl.tl import functions
+from nimbustl.tl.alltlobjects import LAYER
+from nimbustl.tl.functions.channels import GetFullChannelRequest
+from nimbustl.tl.functions.users import GetFullUserRequest
+from nimbustl.tl.tlobject import TLRequest
+from nimbustl.tl.types import (
     ChannelFull,
     Message,
     Updates,
@@ -43,7 +43,7 @@ from herokutl.tl.types import (
     User,
     UserFull,
 )
-from herokutl.utils import is_list_like
+from nimbustl.utils import is_list_like
 
 from .types import (
     CacheRecordEntity,

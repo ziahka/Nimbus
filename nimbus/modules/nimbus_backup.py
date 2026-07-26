@@ -29,7 +29,7 @@ import orjson
 
 from pathlib import Path
 
-from herokutl.tl.types import Message
+from nimbustl.tl.types import Message
 
 from .. import loader, utils
 from ..inline.types import BotInlineCall

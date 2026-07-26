@@ -34,7 +34,7 @@ except ImportError as e:
 
 import typing
 
-from herokutl.tl.types import Message, User
+from nimbustl.tl.types import Message, User
 
 from . import main, utils
 from .pointers import (

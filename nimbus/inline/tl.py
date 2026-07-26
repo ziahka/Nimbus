@@ -1,15 +1,15 @@
 import io
 import typing
 
-from herokutl import Button
-from herokutl import utils as tl_utils
-from herokutl.tl import types
-from herokutl.tl.functions.messages import (
+from nimbustl import Button
+from nimbustl import utils as tl_utils
+from nimbustl.tl import types
+from nimbustl.tl.functions.messages import (
     EditInlineBotMessageRequest,
     SetInlineBotResultsRequest,
 )
-from herokutl.tl.types import DocumentAttributeAudio
-from herokutl.tl import TLObject
+from nimbustl.tl.types import DocumentAttributeAudio
+from nimbustl.tl import TLObject
 
 
 class TelethonBot:

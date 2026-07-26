@@ -16,11 +16,11 @@ import subprocess
 from typing import Literal
 
 import git
-import herokutl
+import nimbustl
 
 from .. import version
 
-parser = herokutl.utils.sanitize_parse_mode("html")
+parser = nimbustl.utils.sanitize_parse_mode("html")
 logger = logging.getLogger(__name__)
 
 

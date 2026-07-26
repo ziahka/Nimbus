@@ -23,10 +23,10 @@ import time
 import typing
 from collections.abc import Callable
 
-from herokutl.hints import EntityLike
-from herokutl.tl.functions.messages import GetFullChatRequest
-from herokutl.tl.types import ChatParticipantAdmin, ChatParticipantCreator, Message
-from herokutl.utils import get_display_name
+from nimbustl.hints import EntityLike
+from nimbustl.tl.functions.messages import GetFullChatRequest
+from nimbustl.tl.types import ChatParticipantAdmin, ChatParticipantCreator, Message
+from nimbustl.utils import get_display_name
 
 from . import main, utils
 from .database import Database

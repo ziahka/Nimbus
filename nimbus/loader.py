@@ -37,7 +37,7 @@ from pathlib import Path
 from types import FunctionType
 from uuid import uuid4
 
-from herokutl.tl.tlobject import TLObject
+from nimbustl.tl.tlobject import TLObject
 
 from . import main, security, utils, validators
 from .database import Database
@@ -160,7 +160,7 @@ VALID_APT_PACKAGES = re.compile(
 IMPORT_PIP_ALIASES = {
     "sklearn": "scikit-learn",
     "pil": "Pillow",
-    "herokutl": "Nimbus-TL-New",
+    "nimbustl": "Nimbus-TL-New",
     "markdown_it": "markdown-it-py",
 }
 
@@ -179,9 +179,9 @@ def patched_import(name: str, *args, **kwargs):
     try:
         match name:
             case s if s.startswith("telethon"):
-                return native_import("herokutl" + name[8:], *args, **kwargs)
+                return native_import("nimbustl" + name[8:], *args, **kwargs)
             case s if s.startswith("hikkatl"):
-                return native_import("herokutl" + name[7:], *args, **kwargs)
+                return native_import("nimbustl" + name[7:], *args, **kwargs)
             case s if s.startswith("hikkalls"):
                 return native_import(name, *args, **kwargs)
             case s if s.startswith("hikka"):

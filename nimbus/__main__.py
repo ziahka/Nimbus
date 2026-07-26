@@ -155,14 +155,14 @@ elif __package__ != "nimbus":
     )
 else:
     try:
-        import herokutl
+        import nimbustl
     except Exception:
         pass
     else:
         try:
-            import herokutl  # noqa: F811
+            import nimbustl  # noqa: F811
 
-            if tuple(map(int, herokutl.__version__.split("."))) < (1, 7, 2):
+            if tuple(map(int, nimbustl.__version__.split("."))) < (1, 7, 2):
                 raise ImportError
         except ImportError:
             print("\U0001f504 Installing dependencies...")

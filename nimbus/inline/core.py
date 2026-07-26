@@ -25,8 +25,8 @@ import os
 import time
 import typing
 
-from herokutl import TelegramClient, events
-from herokutl.errors.rpcerrorlist import (
+from nimbustl import TelegramClient, events
+from nimbustl.errors.rpcerrorlist import (
     AccessTokenExpiredError,
     AccessTokenInvalidError,
     AuthKeyUnregisteredError,
@@ -35,14 +35,14 @@ from herokutl.errors.rpcerrorlist import (
     UserIsBlockedError,
     YouBlockedUserError,
 )
-from herokutl.sessions import SQLiteSession
-from herokutl.tl.functions.contacts import UnblockRequest
-from herokutl.tl.functions.messages import (
+from nimbustl.sessions import SQLiteSession
+from nimbustl.tl.functions.contacts import UnblockRequest
+from nimbustl.tl.functions.messages import (
     GetDialogFiltersRequest,
     SetTypingRequest,
     UpdateDialogFilterRequest,
 )
-from herokutl.tl.types import (
+from nimbustl.tl.types import (
     DialogFilter,
     InputPeerUser,
     Message,
@@ -59,7 +59,7 @@ from herokutl.tl.types import (
     UpdateMessagePoll,
     UpdateMessagePollVote,
 )
-from herokutl.utils import get_display_name
+from nimbustl.utils import get_display_name
 
 from .. import main, utils
 from ..database import Database

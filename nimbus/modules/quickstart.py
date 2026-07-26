@@ -86,7 +86,7 @@ class Quickstart(loader.Module):
                     if not (
                         hasattr(content_channel, "forum") or not content_channel.forum
                     ):
-                        from herokutl.tl.functions.channels import ToggleForumRequest
+                        from nimbustl.tl.functions.channels import ToggleForumRequest
 
                         try:
                             await self.client(
