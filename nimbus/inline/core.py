@@ -321,7 +321,7 @@ class InlineManager(
                 ):
                     break
 
-                pinned = [await self._client.get_input_entity(self.bot_id)]
+                pinned = [await self._client.get_input_entity(self.bot_username)]
                 include = folder.include_peers
                 exclude = folder.exclude_peers
                 emoticon = folder.emoticon
@@ -354,7 +354,10 @@ class InlineManager(
             )
             return True
         except UserIsBlockedError:
-            await self._client(UnblockRequest(id=self.bot_id))
+            # Resolve by username, not bare ID: a freshly-created bot has no
+            # cached access_hash yet, so UnblockRequest(id=self.bot_id) fails
+            # with "Could not find the input entity" before it ever unblocks.
+            await self._client(UnblockRequest(id=self.bot_username))
             return True
         except Exception:
             pass
