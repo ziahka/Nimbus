@@ -139,7 +139,7 @@ nimbus/loaded_modules
 loaded_modules
 nimbus/debug_modules
 nimbus*.session*
-sessions
+/sessions
 database-*.json
 *.swp
 .setup_complete
