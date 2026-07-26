@@ -22,7 +22,7 @@
     </a>
   </p>
 
-  <p><i>Приватный форк <a href="https://github.com/coddrago/Heroku">coddrago/Heroku</a>, который в свою очередь основан на <a href="https://gitlab.com/hikariatama/Hikka">Hikka</a> от Hikari.</i></p>
+  <p><i>Сделано на основе <a href="https://gitlab.com/hikariatama/Hikka">Hikka</a> от Hikari.</i></p>
 </div>
 
 ---
@@ -169,18 +169,14 @@ sudo apt update && sudo apt upgrade -y && sudo apt install python3 git python3-p
 
 ## 📚 Документация
 
-Это приватный форк без отдельного хостинга документации. В основном подходит
-документация оригинального Heroku: [heroku-ub.xyz](https://heroku-ub.xyz/) /
-[dev.heroku-ub.xyz](https://dev.heroku-ub.xyz/) (отличия в названиях команд см. в
-[CHANGELOG.md](CHANGELOG.md)).
+Это приватный форк без отдельного хостинга документации.
 
 ---
 
 ## 💬 Поддержка
 
 Личный/приватный форк — публичной группы поддержки нет. Используйте
-[GitHub Issues](https://github.com/ziahka/Nimbus/issues) этого репозитория,
-либо [группу поддержки Heroku](https://t.me/heroku_talks) по общим вопросам.
+[GitHub Issues](https://github.com/ziahka/Nimbus/issues) этого репозитория.
 
 ---
 
@@ -201,6 +197,5 @@ sudo apt update && sudo apt upgrade -y && sudo apt install python3 git python3-p
 
 ## 🙏 Благодарности
 
-- [coddrago](https://github.com/coddrago) за Heroku, на основе которого сделан этот форк
 - [Hikari](https://gitlab.com/hikariatama) за Hikka (основа проекта)
-- [Lonami](https://t.me/lonami) за Telethon (`herokutl`, форк Telethon от Heroku, лежит в основе и здесь)
+- [Lonami](https://t.me/lonami) за Telethon

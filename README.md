@@ -22,7 +22,7 @@
     </a>
   </p>
 
-  <p><i>A private fork of <a href="https://github.com/coddrago/Heroku">coddrago/Heroku</a>, which itself builds on <a href="https://gitlab.com/hikariatama/Hikka">Hikka</a> by Hikari.</i></p>
+  <p><i>Built on <a href="https://gitlab.com/hikariatama/Hikka">Hikka</a> by Hikari.</i></p>
 </div>
 
 ### Manual Installation (VPS/VDS Server)
@@ -172,17 +172,14 @@ python3 -m nimbus
 
 ## 📚 Documentation
 
-This is a private fork with no separate hosted docs site. Upstream user/developer
-docs from Heroku still mostly apply: [heroku-ub.xyz](https://heroku-ub.xyz/) /
-[dev.heroku-ub.xyz](https://dev.heroku-ub.xyz/) (command names differ where noted
-in [CHANGELOG.md](CHANGELOG.md)).
+This is a private fork with no separate hosted docs site.
 
 ---
 
 ## 💬 Support
 
 Personal/private fork — no public support group. Use [GitHub Issues](https://github.com/ziahka/Nimbus/issues)
-on this repo, or the original [Heroku support group](https://t.me/heroku_talks) for upstream questions.
+on this repo.
 
 ---
 
@@ -203,6 +200,5 @@ on this repo, or the original [Heroku support group](https://t.me/heroku_talks) 
 
 ## 🙏 Acknowledgements
 
-- [**coddrago**](https://github.com/coddrago) for Heroku, the userbot this fork is based on
 - [**Hikari**](https://gitlab.com/hikariatama) for Hikka (project foundation)
-- [**Lonami**](https://t.me/lonami) for Telethon (`herokutl`, Heroku's Telethon fork, is the backbone here too)
+- [**Lonami**](https://t.me/lonami) for Telethon
