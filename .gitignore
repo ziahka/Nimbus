@@ -134,11 +134,11 @@ dmypy.json
 
 *__pycache__
 *.pyc
-heroku/api_token.py
-heroku/loaded_modules
+nimbus/api_token.py
+nimbus/loaded_modules
 loaded_modules
-heroku/debug_modules
-heroku*.session*
+nimbus/debug_modules
+nimbus*.session*
 sessions
 database-*.json
 *.swp
@@ -166,12 +166,12 @@ config.json
 *.mp3
 *.avi
 
-# Heroku-specific rules
-.heroku/
+# Nimbus-specific rules
+.nimbus/
 .apt/
 .profile.d/
 vendor/
 Pipfile.lock
 
-heroku.log.*
+nimbus.log.*
 unknown_errors.txt

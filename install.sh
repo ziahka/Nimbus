@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-APP_NAME="Heroku"
-MODULE_NAME="heroku"
-REPO_URL="${HEROKU_REPO_URL:-https://github.com/coddrago/Heroku.git}"
-VENV_DIR="${HEROKU_VENV_DIR:-.venv}"
-LOG_FILE="heroku-install.log"
+APP_NAME="Nimbus"
+MODULE_NAME="nimbus"
+REPO_URL="${NIMBUS_REPO_URL:-git@github.com:ziahka/Nimbus.git}"
+VENV_DIR="${NIMBUS_VENV_DIR:-.venv}"
+LOG_FILE="nimbus-install.log"
 
 if [ "${SUDO_USER:-}" != "" ] && command -v sudo >/dev/null 2>&1; then
 	RUN_AS_USER=(sudo -u "$SUDO_USER")

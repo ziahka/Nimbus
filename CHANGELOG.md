@@ -1,4 +1,20 @@
-# Heroku Changelog
+# Nimbus Changelog
+
+## ☁️ Nimbus 2.2.0 (fork of Heroku 2.1.0)
+
+ - Forked from [coddrago/Heroku](https://github.com/coddrago/Heroku) 2.1.0, renamed to Nimbus
+ - Renamed package `heroku` -> `nimbus`, module files, env vars (`HEROKU_NO_GIT` -> `NIMBUS_NO_GIT`, etc.),
+   internal class names (`HerokuException` -> `NimbusException`, `HerokuReplyMarkup` -> `NimbusReplyMarkup`, etc.)
+   and the `.herokucmd` -> `.nimbuscmd` version command, across all 9 language packs
+ - Preserved the original AGPLv3 attribution chain (Hikka -> Heroku) in every file header and added
+   a Nimbus attribution block on top, per AGPLv3 §5(c)
+ - `herokutl` (Heroku's own Telethon fork) is kept as-is — it's a real external PyPI dependency, not part
+   of the rebrand
+ - Reworked README/README_RU: dropped dead Codacy/shields badges and the HikkaHost hosting section
+   (not applicable to a private fork), pointed install/clone instructions at the new private repo over SSH
+ - Removed the Docker Hub auto-deploy workflow (relied on the upstream maintainer's registry secrets)
+ - Bumped pinned `certifi` 2024.8.30 -> 2026.7.22 and `rsa` 4.9 -> 4.9.1 (patch releases) in `requirements.txt`
+
 ## 🪐 Heroku 2.1.0
 
  - fix security check in help

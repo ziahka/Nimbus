@@ -30,13 +30,14 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 WORKDIR /data
 RUN mkdir /data/private
 
-RUN git clone https://github.com/coddrago/Heroku /data/Heroku
+# Private repo: pass a token via --build-arg or mount an SSH agent when building.
+RUN git clone https://github.com/ziahka/Nimbus /data/Nimbus
 
-WORKDIR /data/Heroku
+WORKDIR /data/Nimbus
 
-ARG HEROKU_REF=master
-RUN git fetch origin "${HEROKU_REF}" && git checkout "${HEROKU_REF}" && git pull origin "${HEROKU_REF}"
+ARG NIMBUS_REF=master
+RUN git fetch origin "${NIMBUS_REF}" && git checkout "${NIMBUS_REF}" && git pull origin "${NIMBUS_REF}"
 
 RUN pip install --no-cache-dir --no-warn-script-location --disable-pip-version-check --upgrade -r requirements.txt
 
-CMD ["python", "-m", "heroku", "--root"]
+CMD ["python", "-m", "nimbus", "--root"]
