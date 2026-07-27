@@ -143,19 +143,7 @@ class Quickstart(loader.Module):
                 "You can try solving this by leaving some channels/groups"
             )
 
-        await self.request_join(
-            "nimbus_talks",
-            "Nimbus help is only available in this chat. By agreeing to join the chat, you agree to the Nimbus federation rules and if you violate them, you will be permanently banned.",
-        )
-
-        self.mark = lambda: [
-            [
-                {
-                    "text": self.strings["btn_support"],
-                    "url": "https://t.me/nimbus_talks",
-                }
-            ],
-        ] + utils.chunks(
+        self.mark = lambda: utils.chunks(
             [
                 {
                     "text": self.strings.get("language", lang),

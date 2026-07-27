@@ -141,13 +141,6 @@ class InlineStuff(loader.Module):
                                     "emoji_id": "5231065262228250587",
                                 }
                             ],
-                            [
-                                {
-                                    "text": self.strings["support_chat_caption"],
-                                    "url": "https://t.me/nimbus_talks",
-                                    "emoji_id": "5363805650327450240",
-                                }
-                            ],
                         ]
                     ),
                 )
