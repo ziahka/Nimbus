@@ -165,6 +165,7 @@ config.json
 *.m4a
 *.mp3
 *.avi
+!/assets/*.png
 
 # Nimbus-specific rules
 .nimbus/

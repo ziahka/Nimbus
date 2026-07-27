@@ -121,7 +121,7 @@ class CoreMod(loader.Module):
                 f"{nimbustl.__version__} #{nimbustl.tl.alltlobjects.LAYER}",
             )
             + (branch_text),
-            file="https://raw.githubusercontent.com/coddrago/assets/refs/heads/main/heroku/heroku_cmd.png",
+            file=main.BASE_PATH / "assets" / "nimbus_cmd.png",
             reply_to=getattr(message, "reply_to_msg_id", None),
         )
 
@@ -655,13 +655,13 @@ class CoreMod(loader.Module):
                 self.strings["choose_installation"],
                 message,
                 reply_markup=self._markup(),
-                photo="https://raw.githubusercontent.com/coddrago/assets/refs/heads/main/heroku/heroku_installation.png",
+                photo=main.BASE_PATH / "assets" / "nimbus_installation.png",
             )
         ):
 
             await self.client.send_file(
                 message.peer_id,
-                "https://raw.githubusercontent.com/coddrago/assets/refs/heads/main/heroku/heroku_installation.png",
+                main.BASE_PATH / "assets" / "nimbus_installation.png",
                 caption=self.strings["vds_install"],
                 reply_to=getattr(message, "reply_to_msg_id", None),
             )

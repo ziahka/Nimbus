@@ -336,7 +336,7 @@ class Module:
         channel: EntityLike,
         event: asyncio.Event,
     ):
-        from . import utils
+        from . import main, utils
 
         self._db.set(
             "nimbus.main",
@@ -350,7 +350,7 @@ class Module:
                 "✖️ <b>Declined joining <a"
                 f' href="https://t.me/{channel.username}">{utils.escape_html(channel.title)}</a></b>'
             ),
-            photo="https://raw.githubusercontent.com/coddrago/assets/refs/heads/main/heroku/declined_jr.png",
+            photo=main.BASE_PATH / "assets" / "declined_jr.png",
         )
 
     async def request_join(
@@ -372,7 +372,7 @@ class Module:
         :rtype: bool
         :notice: This method will block module loading until the request is approved or declined.
         """
-        from . import utils
+        from . import main, utils
 
         channel = await self.client.get_entity(peer)
 
@@ -414,7 +414,7 @@ class Module:
 
         await self.inline.bot.send_photo(
             self.tg_id,
-            "https://raw.githubusercontent.com/coddrago/assets/refs/heads/main/heroku/join_request.png",
+            main.BASE_PATH / "assets" / "join_request.png",
             caption=(
                 self._client.loader.lookup("translations")
                 .strings("requested_join")

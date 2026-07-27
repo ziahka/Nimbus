@@ -118,10 +118,12 @@ class InlineStuff(loader.Module):
         await utils.answer(message, self.strings["bot_updated"])
 
     async def bot_watcher(self, message: BotInlineMessage):
+        from .. import main
+
         match message.text:
             case "/start":
                 await message.answer_photo(
-                    "https://raw.githubusercontent.com/coddrago/assets/refs/heads/main/heroku/start_cmd.png",
+                    main.BASE_PATH / "assets" / "start_cmd.png",
                     caption=self.strings["this_is_nimbus"].format(
                         (
                             "<tg-emoji emoji-id=5463379725441341739>🪐</tg-emoji>"
@@ -154,7 +156,7 @@ class InlineStuff(loader.Module):
                     pass
                 else:
                     await message.answer_photo(
-                        "https://raw.githubusercontent.com/coddrago/assets/refs/heads/main/heroku/start_cmd.png",
+                        main.BASE_PATH / "assets" / "start_cmd.png",
                         caption=self.strings["profile_cmd"].format(
                             prefix=self.get_prefix(),
                             ram_usage=utils.get_ram_usage(),

@@ -132,9 +132,11 @@ class Presets(loader.Module):
         await self._menu()
 
     async def _menu(self):
+        from .. import main
+
         await self.inline.bot.send_photo(
             self._client.tg_id,
-            "https://raw.githubusercontent.com/coddrago/assets/refs/heads/main/heroku/presets_cmd.png",
+            main.BASE_PATH / "assets" / "presets_cmd.png",
             caption=self.strings["welcome"],
             reply_markup=self.inline.generate_markup(self._markup_gen()),
         )
@@ -353,9 +355,11 @@ class Presets(loader.Module):
     )
     async def presets(self, message: Message):
         """| Packs of modules to load"""
+        from .. import main
+
         await self.inline.form(
             message=message,
-            photo="https://raw.githubusercontent.com/coddrago/assets/refs/heads/main/heroku/presets_cmd.png",
+            photo=main.BASE_PATH / "assets" / "presets_cmd.png",
             text=self.strings["welcome"].replace(
                 "/presets", self.get_prefix() + "presets"
             ),

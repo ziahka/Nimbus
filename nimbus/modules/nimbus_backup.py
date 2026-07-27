@@ -44,10 +44,12 @@ class NimbusBackupMod(loader.Module):
     strings = {"name": "NimbusBackup"}
 
     async def client_ready(self):
+        from .. import main
+
         if not self.get("period"):
             await self.inline.bot.send_photo(
                 self.tg_id,
-                photo="https://raw.githubusercontent.com/coddrago/assets/refs/heads/main/heroku/unit_alpha.png",
+                photo=main.BASE_PATH / "assets" / "unit_alpha.png",
                 caption=self.strings["period"],
                 reply_markup=self.inline.generate_markup(
                     utils.chunks(

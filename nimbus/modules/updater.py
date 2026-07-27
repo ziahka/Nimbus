@@ -201,33 +201,9 @@ class UpdaterMod(loader.Module):
             return ""
 
     @loader.loop(interval=60, autostart=True)
-    async def poller_announcement(self):
-        async with aiohttp.ClientSession() as session:
-            try:
-                url = "https://api.github.com/repos/coddrago/assets/contents/nimbus/announcment.txt"
-                r = await session.get(
-                    url,
-                    timeout=aiohttp.ClientTimeout(total=10),
-                    headers={"Accept": "application/vnd.github.v3.raw"},
-                )
-
-                match r.status:
-                    case 200:
-                        announcement = (await r.text()).strip()
-                        previous = self.get("announcement", "")
-                        if announcement and announcement != previous:
-                            await self.inline.bot.send_message(
-                                self.tg_id,
-                                self.strings["announcement"].format(announcement),
-                            )
-                            self.set("announcement", announcement)
-                    case _:
-                        pass
-            except Exception:
-                pass
-
-    @loader.loop(interval=60, autostart=True)
     async def poller(self):
+        from .. import main
+
         if NO_GIT:
             return
         try:
@@ -276,7 +252,7 @@ class UpdaterMod(loader.Module):
             if manual_update:
                 m = await self.inline.bot.send_photo(
                     self.tg_id,
-                    "https://raw.githubusercontent.com/coddrago/assets/refs/heads/main/heroku/updated.png",
+                    main.BASE_PATH / "assets" / "updated.png",
                     caption=self.strings["update_required"].format(
                         current[:6],
                         '<a href="https://github.com/ziahka/Nimbus/compare/{}...{}">{}</a>'.format(
@@ -299,7 +275,7 @@ class UpdaterMod(loader.Module):
             else:
                 m = await self.inline.bot.send_photo(
                     self.tg_id,
-                    "https://raw.githubusercontent.com/coddrago/assets/refs/heads/main/heroku/updated.png",
+                    main.BASE_PATH / "assets" / "updated.png",
                     caption=self.strings["autoupdate_notifier"].format(
                         self._pending[:6],
                         changelog,
@@ -655,6 +631,8 @@ class UpdaterMod(loader.Module):
         )
 
     async def client_ready(self):
+        from .. import main
+
         try:
             with git.Repo():
                 pass
@@ -698,7 +676,7 @@ class UpdaterMod(loader.Module):
         if not self.config["autoupdate"] and not self.get("autoupdate_answered", False):
             await self.inline.bot.send_photo(
                 self.tg_id,
-                photo="https://raw.githubusercontent.com/coddrago/assets/refs/heads/main/heroku/unit_alpha.png",
+                photo=main.BASE_PATH / "assets" / "unit_alpha.png",
                 caption=self.strings["autoupdate"],
                 reply_markup=self.inline.generate_markup(
                     [

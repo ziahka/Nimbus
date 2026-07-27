@@ -164,7 +164,7 @@ class Database(dict):
                 description="🪐 Content related to Nimbus will be here",
                 silent=True,
                 invite_bot=True,
-                avatar="https://raw.githubusercontent.com/coddrago/assets/main/heroku/heroku.png",
+                avatar=(main.BASE_PATH / "assets" / "nimbus.png").read_bytes(),
                 forum=True,
                 hide_general=True,
                 _folder="nimbus",
