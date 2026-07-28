@@ -4,14 +4,14 @@
   <p>Advanced Telegram userbot with enhanced security and modern features</p>
   
   <p>
-    <a href="#">
+    <a href="https://github.com/ziahka/Nimbus/blob/master/LICENSE">
       <img src="https://img.shields.io/github/license/ziahka/Nimbus" alt="License">
     </a>
     <a href="https://github.com/psf/black">
       <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code Style: Black">
     </a>
-    <a href="#">
-      <img src="https://img.shields.io/badge/repo-private-lightgrey.svg" alt="Private repo">
+    <a href="https://github.com/ziahka/Nimbus/stargazers">
+      <img src="https://img.shields.io/github/stars/ziahka/Nimbus?style=flat" alt="Stars">
     </a>
     <br>
     <a href="https://github.com/ziahka/Nimbus/blob/master/README.md">
@@ -50,7 +50,7 @@
 
   ```bash
   sudo apt update && sudo apt install git python3 -y && \
-  git clone git@github.com:ziahka/Nimbus.git && \
+  git clone https://github.com/ziahka/Nimbus.git && \
   cd Nimbus && \
   python3 -m venv .venv && \
   source .venv/bin/activate && \
@@ -64,7 +64,7 @@
   
   ```bash
   sudo dnf update -y && sudo dnf install git python3 -y && \
-  git clone git@github.com:ziahka/Nimbus.git && \
+  git clone https://github.com/ziahka/Nimbus.git && \
   cd Nimbus && \
   python3 -m venv .venv && \
   source .venv/bin/activate && \
@@ -78,7 +78,7 @@
   
 ```bash
 sudo pacman -Syu --noconfirm && sudo pacman -S git python --noconfirm --needed && \
-git clone git@github.com:ziahka/Nimbus.git && \
+git clone https://github.com/ziahka/Nimbus.git && \
 cd Nimbus && \
 python3 -m venv .venv && \
 source .venv/bin/activate && \
@@ -112,7 +112,7 @@ python3 -m nimbus
   
   4. **Enter this command(RMB):**
   ```bash
-  clear && git clone git@github.com:ziahka/Nimbus.git && cd Nimbus && python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt && python3 -m nimbus
+  clear && git clone https://github.com/ziahka/Nimbus.git && cd Nimbus && python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt && python3 -m nimbus
   ```
   > **🔗How to get API_ID and API_HASH?:** [Video](https://youtu.be/DcqDA249Lhg?t=24)
   
@@ -127,7 +127,7 @@ python3 -m nimbus
   4. <b>After successful installation, a terminal will open in front of you, write there:</b>
     
   ```bash
-  sudo apt update && sudo apt upgrade -y && sudo apt install python3 git python3-pip -y && git clone git@github.com:ziahka/Nimbus.git && cd Nimbus && python3 -m venv .venv && source .venv/bin/activate && sudo pip install -r requirements.txt && python3 -m nimbus
+  sudo apt update && sudo apt upgrade -y && sudo apt install python3 git python3-pip -y && git clone https://github.com/ziahka/Nimbus.git && cd Nimbus && python3 -m venv .venv && source .venv/bin/activate && sudo pip install -r requirements.txt && python3 -m nimbus
   ```
 
 5. <b>At the end of the installation, a link will appear, follow it and enter your account details to log in.</b>
@@ -153,6 +153,7 @@ python3 -m nimbus
 
 | Feature | Description |
 |---------|-------------|
+| 🪄 **`.ask` Smart Command** | Describe what you want in plain language and Nimbus picks and runs the matching command for you — see below |
 | 🆕 **Latest Telegram Layer** | Support for forums and newest Telegram features |
 | 🔒 **Enhanced Security** | Native entity caching and targeted security rules |
 | 🎨 **UI/UX Improvements** | Modern interface and user experience |
@@ -160,6 +161,27 @@ python3 -m nimbus
 | ⏱ **Rapid Bug Fixes** | Faster resolution than FTG/GeekTG |
 | 🔄 **Backward Compatibility** | Works with FTG, GeekTG and Hikka modules |
 | ▶️ **Inline Elements** | Forms, galleries and lists support |
+
+### 🪄 `.ask` — the smart command line
+
+Instead of memorizing exact command syntax, just describe what you want:
+
+```text
+.ask mute this chat for an hour
+.ask show me who joined in the last week
+```
+
+Nimbus looks at every command currently loaded from your modules, asks an LLM to pick
+the best match and the right arguments, and shows you a confirmation card before running
+anything (unless you turn that off). It works with any OpenAI-compatible API — OpenAI itself,
+or any compatible provider/proxy:
+
+```text
+.config SmartCommand api_key <your key>
+.config SmartCommand base_url <endpoint, defaults to https://api.openai.com/v1>
+.config SmartCommand model <model name, defaults to gpt-4o-mini>
+.config SmartCommand auto_run <true to skip the confirmation step>
+```
 
 ---
 
@@ -172,14 +194,20 @@ python3 -m nimbus
 
 ## 📚 Documentation
 
-This is a private fork with no separate hosted docs site.
+There's no separate hosted docs site — the userbot is self-documenting instead:
+
+- `.help` — lists every loaded module and command, with usage for each
+- `.help <module>` — shows commands and config options for one module
+- `.config <module>` — view and edit a module's settings
+- `.dlmod <url or name>` — install a module from a repo or a raw file URL
+- `.ask <what you want>` — let Nimbus find and run the right command for you
 
 ---
 
 ## 💬 Support
 
-Personal/private fork — no public support group. Use [GitHub Issues](https://github.com/ziahka/Nimbus/issues)
-on this repo.
+This is a small personal fork without a dedicated support chat. Found a bug or have a
+feature request? Open a [GitHub Issue](https://github.com/ziahka/Nimbus/issues) on this repo.
 
 ---
 

@@ -4,14 +4,14 @@
   <p>Продвинутый юзербот для Telegram с повышенной безопасностью и современными функциями</p>
 
   <p>
-    <a href="#">
+    <a href="https://github.com/ziahka/Nimbus/blob/master/LICENSE">
       <img src="https://img.shields.io/github/license/ziahka/Nimbus" alt="License">
     </a>
     <a href="https://github.com/psf/black">
       <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code Style: Black">
     </a>
-    <a href="#">
-      <img src="https://img.shields.io/badge/repo-private-lightgrey.svg" alt="Private repo">
+    <a href="https://github.com/ziahka/Nimbus/stargazers">
+      <img src="https://img.shields.io/github/stars/ziahka/Nimbus?style=flat" alt="Stars">
     </a>
     <br>
     <a href="https://github.com/ziahka/Nimbus/blob/master/README.md">
@@ -49,7 +49,7 @@
 
   ```bash
   sudo apt update && sudo apt install git python3 -y && \
-  git clone git@github.com:ziahka/Nimbus.git && \
+  git clone https://github.com/ziahka/Nimbus.git && \
   cd Nimbus && \
   python3 -m venv .venv && \
   source .venv/bin/activate && \
@@ -63,7 +63,7 @@
   
   ```bash
   sudo dnf update -y && sudo dnf install git python3 -y && \
-  git clone git@github.com:ziahka/Nimbus.git && \
+  git clone https://github.com/ziahka/Nimbus.git && \
   cd Nimbus && \
   python3 -m venv .venv && \
   source .venv/bin/activate && \
@@ -77,7 +77,7 @@
   
 ```bash
 sudo pacman -Syu --noconfirm && sudo pacman -S git python --noconfirm --needed && \
-git clone git@github.com:ziahka/Nimbus.git && \
+git clone https://github.com/ziahka/Nimbus.git && \
 cd Nimbus && \
 python3 -m venv .venv && \
 source .venv/bin/activate && \
@@ -111,7 +111,7 @@ curl -Ss https://bootstrap.pypa.io/get-pip.py | python3
 
 4. **Введите эту команду (ПКМ):**
 ```bash
-clear && git clone git@github.com:ziahka/Nimbus.git && cd Nimbus && python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt && python3 -m nimbus
+clear && git clone https://github.com/ziahka/Nimbus.git && cd Nimbus && python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt && python3 -m nimbus
 ```
 > **🔗Как получить API_ID и API_HASH?:** [Видео](https://youtu.be/DcqDA249Lhg?t=24)
   
@@ -125,7 +125,7 @@ clear && git clone git@github.com:ziahka/Nimbus.git && cd Nimbus && python3 -m v
 3. <b>Дождитесь установки дистрибутива, можете заварить чай</b>
 4. <b>После успешной установки перед вами откроется терминал, введите туда:</b>
 ```bash
-sudo apt update && sudo apt upgrade -y && sudo apt install python3 git python3-pip -y && git clone git@github.com:ziahka/Nimbus.git && cd Nimbus && python3 -m venv .venv && source .venv/bin/activate && sudo pip install -r requirements.txt && python3 -m nimbus
+sudo apt update && sudo apt upgrade -y && sudo apt install python3 git python3-pip -y && git clone https://github.com/ziahka/Nimbus.git && cd Nimbus && python3 -m venv .venv && source .venv/bin/activate && sudo pip install -r requirements.txt && python3 -m nimbus
 ```
 5. <b>В конце установки появится ссылка, перейдите по ней и введите данные своей учетной записи для входа.</b>
 > Вуаля! Вы установили Nimbus на UserLAnd.
@@ -150,6 +150,7 @@ sudo apt update && sudo apt upgrade -y && sudo apt install python3 git python3-p
 
 | Особенность | Описание |
 |-------------|------------|
+| 🪄 Умная команда `.ask` | Опиши, что нужно, обычными словами — Nimbus сам подберёт и выполнит нужную команду. Подробнее ниже |
 | 🆕 Последний слой Telegram | Поддержка форумов и новейших функций Telegram |
 | 🔒 Повышенная безопасность | Нативное кэширование сущностей и целевые правила безопасности |
 | 🎨 Улучшения UI/UX | Современный интерфейс и пользовательский опыт |
@@ -157,6 +158,27 @@ sudo apt update && sudo apt upgrade -y && sudo apt install python3 git python3-p
 | ⏱️ Быстрое исправление ошибок | Более быстрое решение, чем у FTG/GeekTG |
 | 🔄 Обратная совместимость | Работает с модулями FTG, GeekTG и Hikka |
 | ▶️ Инлайн-элементы | Поддержка форм, галерей и списков |
+
+### 🪄 `.ask` — умная командная строка
+
+Не нужно запоминать точный синтаксис — просто опиши, что нужно сделать:
+
+```text
+.ask замьють этот чат на час
+.ask покажи кто вступил за последнюю неделю
+```
+
+Nimbus смотрит на все команды, загруженные из твоих модулей, просит LLM подобрать
+подходящую и нужные аргументы, и перед запуском показывает карточку с подтверждением
+(если не отключить этот шаг). Работает с любым OpenAI-совместимым API — самим OpenAI
+или любым совместимым провайдером/прокси:
+
+```text
+.config SmartCommand api_key <твой ключ>
+.config SmartCommand base_url <адрес API, по умолчанию https://api.openai.com/v1>
+.config SmartCommand model <название модели, по умолчанию gpt-4o-mini>
+.config SmartCommand auto_run <true, чтобы пропускать подтверждение>
+```
 
 ---
 
@@ -169,14 +191,20 @@ sudo apt update && sudo apt upgrade -y && sudo apt install python3 git python3-p
 
 ## 📚 Документация
 
-Это приватный форк без отдельного хостинга документации.
+Отдельного сайта с документацией нет — юзербот документирует себя сам:
+
+- `.help` — список всех загруженных модулей и команд с описанием каждой
+- `.help <модуль>` — команды и настройки конкретного модуля
+- `.config <модуль>` — просмотр и изменение настроек модуля
+- `.dlmod <ссылка или название>` — установка модуля из репозитория или по прямой ссылке
+- `.ask <что нужно сделать>` — Nimbus сам найдёт и выполнит нужную команду
 
 ---
 
 ## 💬 Поддержка
 
-Личный/приватный форк — публичной группы поддержки нет. Используйте
-[GitHub Issues](https://github.com/ziahka/Nimbus/issues) этого репозитория.
+Это небольшой личный форк без отдельного чата поддержки. Нашёл баг или есть предложение —
+заведи [issue на GitHub](https://github.com/ziahka/Nimbus/issues) в этом репозитории.
 
 ---
 
