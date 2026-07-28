@@ -18,7 +18,6 @@
 
 import asyncio
 import logging
-import os
 import random
 import re
 import typing
@@ -95,14 +94,7 @@ class TokenObtainment(InlineUnit):
                 await fw_protect()
                 from .. import main
 
-                if "DOCKER" in os.environ:
-                    m = await conv.send_file(
-                        "https://raw.githubusercontent.com/ziahka/Nimbus/refs/heads/master/assets/nimbus-ava.png"
-                    )
-                else:
-                    m = await conv.send_file(
-                        main.BASE_PATH / "assets" / "nimbus-ava.png"
-                    )
+                m = await conv.send_file(main.BASE_PATH / "assets" / "nimbus-ava.png")
                 r = await conv.get_response()
 
                 logger.debug(">> <Photo>")
