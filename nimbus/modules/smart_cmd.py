@@ -24,6 +24,10 @@ class _NotJSON(ValueError):
     """Raised when the configured endpoint didn't return JSON at all."""
 
 
+class _AuthError(ValueError):
+    """Raised when the endpoint rejected the configured api_key."""
+
+
 @loader.tds
 class SmartCommandMod(loader.Module):
     """Turns a plain-language request into the right command, so you don't have to remember exact syntax"""
@@ -45,6 +49,11 @@ class SmartCommandMod(loader.Module):
             "Most OpenAI-compatible providers need a <code>/v1</code> suffix on "
             "<code>base_url</code>. Double check the value with "
             "<code>{prefix}config SmartCommand base_url</code>."
+        ),
+        "unauthorized": (
+            "🪄 <b>The endpoint rejected the API key</b> (401/403).\n"
+            "Check <code>{prefix}config SmartCommand api_key</code> — it's either "
+            "empty, wrong, or expired for this provider."
         ),
         "request_failed": "🪄 <b>Request to the model failed:</b> <code>{error}</code>",
         "confirm": (
@@ -72,6 +81,11 @@ class SmartCommandMod(loader.Module):
             "Большинству OpenAI-совместимых провайдеров нужен суффикс <code>/v1</code> "
             "в <code>base_url</code>. Проверь значение через "
             "<code>{prefix}config SmartCommand base_url</code>."
+        ),
+        "unauthorized": (
+            "🪄 <b>Эндпоинт отклонил API-ключ</b> (401/403).\n"
+            "Проверь <code>{prefix}config SmartCommand api_key</code> — он либо пустой, "
+            "либо неверный/просроченный для этого провайдера."
         ),
         "request_failed": "🪄 <b>Запрос к модели не удался:</b> <code>{error}</code>",
         "confirm": (
@@ -150,6 +164,10 @@ class SmartCommandMod(loader.Module):
                 },
                 timeout=aiohttp.ClientTimeout(total=30),
             ) as resp:
+                if resp.status in (401, 403):
+                    raise _AuthError(
+                        self.strings["unauthorized"].format(prefix=self.get_prefix())
+                    )
                 resp.raise_for_status()
                 raw = await resp.text()
 
@@ -187,7 +205,7 @@ class SmartCommandMod(loader.Module):
 
         try:
             decision = await self._route(query)
-        except _NotJSON as e:
+        except (_NotJSON, _AuthError) as e:
             await utils.answer(message, str(e))
             return
         except (aiohttp.ClientError, TimeoutError) as e:
