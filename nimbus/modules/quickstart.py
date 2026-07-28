@@ -31,11 +31,7 @@ class Quickstart(loader.Module):
     strings = {"name": "Quickstart"}
 
     async def client_ready(self):
-        self.text = lambda: self.strings["base"].format(
-            utils.get_platform_emoji()
-            if self.client.nimbus_me.premium is True
-            else "Nimbus"
-        )
+        self.text = lambda: self.strings["base"].format("Nimbus")
 
         try:
             content_channel = None

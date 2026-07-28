@@ -185,11 +185,7 @@ class NimbusInfoMod(loader.Module):
             placeholders_msg
             if self.config["custom_message"]
             else self.strings["info_message"].format(
-                (
-                    utils.get_platform_emoji()
-                    if self._client.nimbus_me.premium and self.config["show_nimbus"]
-                    else ""
-                ),
+                "🪐 Nimbus",
                 me=me,
                 version=_version,
                 prefix=prefix,

@@ -1048,11 +1048,7 @@ class Nimbus:
                         ' href="https://github.com/ziahka/Nimbus/commit/{}">{}</a></b>\n<tg-emoji emoji-id=5873225338984599714>🔎</tg-emoji>'
                         " <b>Update status: {}</b>\n<tg-emoji emoji-id=5870903672937911120>🕶</tg-emoji> <b>Prefix:</b> <code>{}</code>"
                     ).format(
-                        (
-                            utils.get_platform_emoji()
-                            if client.nimbus_me.premium is True
-                            else "🪐 Nimbus"
-                        ),
+                        "🪐 Nimbus",
                         ".".join(list(map(str, list(__version__)))),
                         build,
                         build[:7],

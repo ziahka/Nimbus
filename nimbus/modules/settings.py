@@ -111,11 +111,7 @@ class CoreMod(loader.Module):
         await utils.answer(
             message,
             self.strings["nimbus"].format(
-                (
-                    utils.get_platform_emoji()
-                    if self._client.nimbus_me.premium
-                    else "🪐 <b>Nimbus userbot</b>"
-                ),
+                "🪐 <b>Nimbus userbot</b>",
                 *version.__version__,
                 utils.get_commit_url(),
                 f"{nimbustl.__version__} #{nimbustl.tl.alltlobjects.LAYER}",
