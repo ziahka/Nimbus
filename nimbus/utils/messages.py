@@ -19,6 +19,7 @@ import typing
 
 import grapheme
 import nimbustl
+from nimbustl.errors.rpcerrorlist import MessageIdInvalidError
 from nimbustl.tl.types import (
     Channel,
     Chat,
@@ -390,11 +391,22 @@ async def answer(
                 return result
 
         if edit:
-            result = await message.edit(
-                text,
-                parse_mode=lambda t: (t, entities),
-                **kwargs,
-            )
+            try:
+                result = await message.edit(
+                    text,
+                    parse_mode=lambda t: (t, entities),
+                    **kwargs,
+                )
+            except MessageIdInvalidError:
+                # The message we tried to edit (usually the user's own
+                # command message) is gone - most often the user deleted
+                # it manually while the command was still running. Fall
+                # back to sending a fresh message instead of crashing.
+                result = await message.respond(
+                    text,
+                    parse_mode=lambda t: (t, entities),
+                    **kwargs,
+                )
         else:
             file = kwargs.pop("file", None)
             invert_media = kwargs.pop("invert_media", False)
