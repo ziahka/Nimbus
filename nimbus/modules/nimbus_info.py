@@ -57,7 +57,7 @@ class NimbusInfoMod(loader.Module):
             ),
             loader.ConfigValue(
                 "banner_url",
-                "https://raw.githubusercontent.com/ziahka/Nimbus/refs/heads/master/assets/nimbus_info.png",
+                None,
                 lambda: self.strings["_cfg_banner"],
                 validator=loader.validators.RandomLink(),
             ),
@@ -80,6 +80,18 @@ class NimbusInfoMod(loader.Module):
                 validator=loader.validators.Boolean(),
             ),
         )
+
+    async def client_ready(self):
+        # Installs that ran before the default banner moved off the old
+        # (now-external, no longer maintained) asset host are stuck with
+        # that stale value forever, since a saved config always wins over
+        # a new code default. Clear it once so the current default applies.
+        stale = self.config["banner_url"]
+        if stale and any(
+            "coddrago/assets" in str(url) or "heroku" in str(url).lower()
+            for url in (stale if isinstance(stale, list) else [stale])
+        ):
+            self.config["banner_url"] = None
 
     def _get_os_name(self):
         try:
@@ -195,14 +207,17 @@ class NimbusInfoMod(loader.Module):
 
     @loader.command()
     async def infocmd(self, message: Message):
+        from .. import main
+
         start = time.perf_counter_ns()
-        media = str(self.config["banner_url"])
+        media = (
+            str(self.config["banner_url"])
+            if self.config["banner_url"]
+            else main.BASE_PATH / "assets" / "nimbus_info.png"
+        )
 
         if self.config["banner_url"] and self.config["quote_media"] is True:
             media = InputMediaWebPage(str(self.config["banner_url"]), optional=True)
-
-        elif not self.config["banner_url"]:
-            media = None
 
         try:
             match True:
