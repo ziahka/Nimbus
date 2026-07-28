@@ -20,6 +20,10 @@ logger = logging.getLogger(__name__)
 _JSON_BLOCK = re.compile(r"\{.*\}", re.DOTALL)
 
 
+class _NotJSON(ValueError):
+    """Raised when the configured endpoint didn't return JSON at all."""
+
+
 @loader.tds
 class SmartCommandMod(loader.Module):
     """Turns a plain-language request into the right command, so you don't have to remember exact syntax"""
@@ -35,6 +39,13 @@ class SmartCommandMod(loader.Module):
         "thinking": "🪄 <b>Thinking...</b>",
         "no_match": "🪄 <b>Couldn't match that to a loaded command.</b>\n<i>{reasoning}</i>",
         "bad_response": "🪄 <b>The model didn't return something I could parse.</b> Try rephrasing.",
+        "not_json": (
+            "🪄 <b>That endpoint didn't return JSON</b> — got an HTML page back from "
+            "<code>{url}</code> instead.\n"
+            "Most OpenAI-compatible providers need a <code>/v1</code> suffix on "
+            "<code>base_url</code>. Double check the value with "
+            "<code>{prefix}config SmartCommand base_url</code>."
+        ),
         "request_failed": "🪄 <b>Request to the model failed:</b> <code>{error}</code>",
         "confirm": (
             "🪄 <b>Best match:</b> <code>{prefix}{command} {args}</code>\n"
@@ -55,6 +66,13 @@ class SmartCommandMod(loader.Module):
         "thinking": "🪄 <b>Думаю...</b>",
         "no_match": "🪄 <b>Не удалось подобрать команду среди загруженных.</b>\n<i>{reasoning}</i>",
         "bad_response": "🪄 <b>Модель ответила не тем, что я смог разобрать.</b> Попробуй переформулировать.",
+        "not_json": (
+            "🪄 <b>Этот адрес вернул не JSON</b> — вместо ответа API пришла HTML-страница "
+            "с <code>{url}</code>.\n"
+            "Большинству OpenAI-совместимых провайдеров нужен суффикс <code>/v1</code> "
+            "в <code>base_url</code>. Проверь значение через "
+            "<code>{prefix}config SmartCommand base_url</code>."
+        ),
         "request_failed": "🪄 <b>Запрос к модели не удался:</b> <code>{error}</code>",
         "confirm": (
             "🪄 <b>Похоже, нужно:</b> <code>{prefix}{command} {args}</code>\n"
@@ -116,9 +134,11 @@ class SmartCommandMod(loader.Module):
             f"Available commands:\n{self._catalog()}"
         )
 
+        url = f"{str(self.config['base_url']).rstrip('/')}/chat/completions"
+
         async with aiohttp.ClientSession() as session:
             async with session.post(
-                f"{str(self.config['base_url']).rstrip('/')}/chat/completions",
+                url,
                 headers={"Authorization": f"Bearer {self.config['api_key']}"},
                 json={
                     "model": self.config["model"],
@@ -131,7 +151,14 @@ class SmartCommandMod(loader.Module):
                 timeout=aiohttp.ClientTimeout(total=30),
             ) as resp:
                 resp.raise_for_status()
-                data = await resp.json()
+                raw = await resp.text()
+
+        try:
+            data = json.loads(raw)
+        except json.JSONDecodeError:
+            raise _NotJSON(
+                self.strings["not_json"].format(url=url, prefix=self.get_prefix())
+            ) from None
 
         content = data["choices"][0]["message"]["content"]
         match = _JSON_BLOCK.search(content)
@@ -160,6 +187,9 @@ class SmartCommandMod(loader.Module):
 
         try:
             decision = await self._route(query)
+        except _NotJSON as e:
+            await utils.answer(message, str(e))
+            return
         except (aiohttp.ClientError, TimeoutError) as e:
             await utils.answer(
                 message, self.strings["request_failed"].format(error=e)
