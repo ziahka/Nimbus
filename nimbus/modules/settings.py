@@ -89,9 +89,9 @@ class CoreMod(loader.Module):
         return f"{str(chatid)}.{module}" if module else chatid
 
     @loader.command(
-        ru_doc="Информация о Хероку",
+        ru_doc="Информация о Nimbus",
         en_doc="Information of Nimbus",
-        ua_doc="Інформація про Хероку",
+        ua_doc="Інформація про Nimbus",
         de_doc="Informationen über Nimbus",
     )
     async def nimbuscmd(self, message: Message):
