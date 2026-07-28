@@ -116,32 +116,23 @@ def get_named_platform_emoji() -> str:
 
 def get_platform_emoji() -> str:
     """
-    Returns custom emoji for current platform
-    :return: Emoji entity in string
+    Returns decorative emoji for current platform
+    :return: Emoji string
     """
-
-    BASE = "".join(
-        (
-            "<tg-emoji emoji-id={}>🪐</tg-emoji>",
-            "<tg-emoji emoji-id=5352934134618549768>🪐</tg-emoji>",
-            "<tg-emoji emoji-id=5352663371290271790>🪐</tg-emoji>",
-            "<tg-emoji emoji-id=5350822883314655367>🪐</tg-emoji>",
-        )
-    )
 
     match True:
 
         case _ if IS_HIKKAHOST:
-            return BASE.format(5395745114494624362)
+            return "🌼"
 
         case _ if IS_USERLAND:
-            return BASE.format(5458877818031077824)
+            return "🐧"
 
         case _ if IS_DOCKER:
-            return BASE.format(5352678227582152630)
+            return "🐳"
 
         case _:
-            return BASE.format(5393588431026674882)
+            return "🪐"
 
 
 def uptime() -> int:

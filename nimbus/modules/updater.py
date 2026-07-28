@@ -322,11 +322,6 @@ class UpdaterMod(loader.Module):
         """Shows the changelog of the last major update"""
         with open("CHANGELOG.md", encoding="utf-8") as f:
             changelog = f.read().split("##")[1].strip()
-        if (await self._client.get_me()).premium:
-            changelog.replace(
-                "🌑 Nimbus",
-                "<tg-emoji emoji-id=5192765204898783881>🌘</tg-emoji><tg-emoji emoji-id=5195311729663286630>🌘</tg-emoji><tg-emoji emoji-id=5195045669324201904>🌘</tg-emoji>",
-            )
 
         await utils.answer(message, self.strings["changelog"].format(changelog))
 
@@ -762,12 +757,6 @@ class UpdaterMod(loader.Module):
                                     and dialog.entity.id
                                     == self._client.loader.inline.bot_id
                                 )
-                                or dialog.entity.id
-                                in [
-                                    2445389036,
-                                    2341345589,
-                                    2410964167,
-                                ]  # official nimbus chats
                             ],
                             emoticon="🐱",
                             exclude_peers=[],
