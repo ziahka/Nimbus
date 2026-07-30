@@ -17,6 +17,8 @@
 # 🔑 https://www.gnu.org/licenses/agpl-3.0.html
 
 import contextlib
+import time
+
 import nimbustl
 from nimbustl.tl.types import Message, User
 
@@ -28,7 +30,22 @@ from ..inline.types import InlineCall
 class CoreMod(loader.Module):
     """Control core userbot settings"""
 
-    strings = {"name": "Settings"}
+    strings = {
+        "name": "Settings",
+        "nimbus_stats": (
+            "\n\n<blockquote>✨ <i>Ping: {ping} ms</i>\n"
+            "✨ <i>Uptime: {uptime}</i></blockquote>\n"
+            "🎵 <i>{status_line}</i>"
+        ),
+    }
+
+    strings_ru = {
+        "nimbus_stats": (
+            "\n\n<blockquote>✨ <i>Пинг: {ping} мс</i>\n"
+            "✨ <i>Аптайм: {uptime}</i></blockquote>\n"
+            "🎵 <i>{status_line}</i>"
+        ),
+    }
 
     def __init__(self):
         self.config = loader.ModuleConfig(
@@ -42,6 +59,12 @@ class CoreMod(loader.Module):
                 "alias_emoji",
                 "<tg-emoji emoji-id=4974259868996207180>▪️</tg-emoji>",
                 "just emoji in .aliases",
+            ),
+            loader.ConfigValue(
+                "status_line",
+                "Floating above the clouds",
+                "Tagline shown at the bottom of .nimbus",
+                validator=loader.validators.String(),
             ),
         )
 
@@ -95,6 +118,7 @@ class CoreMod(loader.Module):
         de_doc="Informationen über Nimbus",
     )
     async def nimbuscmd(self, message: Message):
+        start = time.perf_counter_ns()
 
         branch_text = ""
         if version.branch == "master":
@@ -108,6 +132,12 @@ class CoreMod(loader.Module):
         else:
             branch_text = self.strings["unstable"].format(version.branch)
 
+        stats = self.strings["nimbus_stats"].format(
+            ping=round((time.perf_counter_ns() - start) / 10**6, 3),
+            uptime=utils.formatted_uptime(),
+            status_line=utils.escape_html(self.config["status_line"]),
+        )
+
         await utils.answer(
             message,
             self.strings["nimbus"].format(
@@ -116,7 +146,8 @@ class CoreMod(loader.Module):
                 utils.get_commit_url(),
                 f"{nimbustl.__version__} #{nimbustl.tl.alltlobjects.LAYER}",
             )
-            + (branch_text),
+            + branch_text
+            + stats,
             file=main.BASE_PATH / "assets" / "nimbus_cmd.png",
             reply_to=getattr(message, "reply_to_msg_id", None),
         )

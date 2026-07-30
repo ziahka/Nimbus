@@ -36,7 +36,10 @@ logger = logging.getLogger(__name__)
 class NimbusInfoMod(loader.Module):
     """Show userbot info"""
 
-    strings = {"name": "NimbusInfo"}
+    strings = {
+        "name": "NimbusInfo",
+        "status_tagline": "\n🎵 <i>{status_line}</i>",
+    }
 
     def __init__(self):
         self.config = loader.ModuleConfig(
@@ -78,6 +81,12 @@ class NimbusInfoMod(loader.Module):
                 False,
                 "Switch preview invert media",
                 validator=loader.validators.Boolean(),
+            ),
+            loader.ConfigValue(
+                "status_line",
+                "Up here in the clouds",
+                "Tagline shown at the bottom of .info",
+                validator=loader.validators.String(),
             ),
         )
 
@@ -198,6 +207,9 @@ class NimbusInfoMod(loader.Module):
                 platform=platform,
                 os=self._get_os_name() or self.strings["non_detectable"],
                 python_ver=lib_platform.python_version(),
+            )
+            + self.strings["status_tagline"].format(
+                status_line=utils.escape_html(self.config["status_line"])
             )
         )
 

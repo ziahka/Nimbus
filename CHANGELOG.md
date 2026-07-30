@@ -15,6 +15,9 @@
  - Added a first batch of catalog modules: `.broadcast` (+ `.bcadd`/`.bcdel`/`.bclist`),
    `.purge`, `.calc`
  - Added [`DEVELOPING.md`](DEVELOPING.md), a guide for writing and submitting modules
+ - Restyled `.nimbus` and `.info` with boxed stat cards (ping, uptime) and a
+   configurable closing tagline (`.config Settings status_line`,
+   `.config NimbusInfo status_line`)
 
 ## ☁️ Nimbus 2.4.0
 
