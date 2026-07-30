@@ -372,7 +372,7 @@ settings:
   aliases_cleared: "<tg-emoji emoji-id=5197474765387864959>👍</tg-emoji> <b>All aliases removed</b>."
   no_alias: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Alias</b> <code>{}</code> <b>does not exist</b>"
   db_cleared: "<tg-emoji emoji-id=5197474765387864959>👍</tg-emoji> <b>Database cleared</b>"
-  nimbus: "{} <b>{}.{}.{}</b> <i>{}</i>\n\n<b>📁 <b>nimbus-tl:</b> <i>{}</i>\n\n⌨ <b>Developers: <a href=\"t.me/ur_jump\">@ur_jump</a></b>"
+  nimbus: "{0} <b>{1}.{2}.{3}</b>\n\n<blockquote>🔗 <i>Build:</i> <a href=\"{4}\">{4}</a>\n⚙️ <i>Library:</i> {5}\n✨ <i>Ping:</i> {ping} ms\n✨ <i>Uptime:</i> {uptime}</blockquote>\n\n🎵 <i>{status_line}</i>"
   confirm_cleardb: "⚠️ <b>Are you sure, that you want to clear database?</b>"
   cleardb_confirm: "🗑 Clear database"
   cancel: "🚫 Cancel"

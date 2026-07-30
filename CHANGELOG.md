@@ -15,8 +15,12 @@
  - Added a first batch of catalog modules: `.broadcast` (+ `.bcadd`/`.bcdel`/`.bclist`),
    `.purge`, `.calc`
  - Added [`DEVELOPING.md`](DEVELOPING.md), a guide for writing and submitting modules
- - Restyled `.nimbus` and `.info` with boxed stat cards (ping, uptime) and a
-   configurable closing tagline (`.config Settings status_line`,
+ - Rebuilt `.nimbus`'s output template (all 9 langpacks): dropped a leftover
+   "Developers: @ur_jump" credit line pointing at the original Hikka project's contact
+   that had survived the entire rebrand, fixed a nonsensical 📁 icon on the library
+   version line, and restyled it into one boxed card with ping/uptime
+ - Restyled `.info` with the same closing tagline treatment
+ - Both cards' tagline is configurable (`.config Settings status_line`,
    `.config NimbusInfo status_line`)
 
 ## ☁️ Nimbus 2.4.0
