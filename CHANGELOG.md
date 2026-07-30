@@ -1,5 +1,16 @@
 # Nimbus Changelog
 
+## ☁️ Nimbus 2.5.0
+
+ - Added `.afk` / `.unafk` — auto-replies while you're away, with per-chat cooldown and
+   automatic turn-off on your next outgoing message
+ - Added `.save` / `.note` (`.n`) / `.notes` / `.delnote` — saved text snippets you can
+   recall by name
+ - Added `.remind` / `.reminders` / `.delremind` — self-reminders on a delay
+   (`10m`, `2h`, `1d2h30m`, ...), restart-safe
+ - Removed the `.ask` smart command router and the `.tldr` AI summary command —
+   dropped the built-in dependency on an external AI provider
+
 ## ☁️ Nimbus 2.4.0
 
  - Replaced every remaining external asset reference with locally-stored, self-branded

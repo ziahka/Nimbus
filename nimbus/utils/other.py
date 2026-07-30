@@ -209,6 +209,26 @@ def format_file_size(size_bytes: int) -> str:
     return ".1f"
 
 
+def format_duration(seconds: int) -> str:
+    """
+    Format a duration in seconds to a compact human-readable string
+    :param seconds: Duration in seconds
+    :return: Formatted string (e.g., '1d 2h 3m')
+    """
+    seconds = int(seconds)
+    if seconds < 60:
+        return f"{seconds}s"
+
+    units = (("d", 86400), ("h", 3600), ("m", 60), ("s", 1))
+    parts = []
+    for suffix, size in units:
+        value, seconds = divmod(seconds, size)
+        if value:
+            parts.append(f"{value}{suffix}")
+
+    return " ".join(parts[:3])
+
+
 def is_url(string: str) -> bool:
     """
     Check if string is a valid URL

@@ -153,7 +153,9 @@ python3 -m nimbus
 
 | Feature | Description |
 |---------|-------------|
-| 🪄 **`.ask` Smart Command** | Describe what you want in plain language and Nimbus picks and runs the matching command for you — see below |
+| 🌙 **`.afk`** | Auto-replies while you're away, with per-chat cooldown |
+| 🗒 **`.save` / `.note`** | Saved text snippets you can recall by name |
+| ⏰ **`.remind`** | Self-reminders on a delay (`10m`, `2h`, `1d2h30m`, ...) |
 | 🆕 **Latest Telegram Layer** | Support for forums and newest Telegram features |
 | 🔒 **Enhanced Security** | Native entity caching and targeted security rules |
 | 🎨 **UI/UX Improvements** | Modern interface and user experience |
@@ -162,26 +164,26 @@ python3 -m nimbus
 | 🔄 **Backward Compatibility** | Works with FTG, GeekTG and Hikka modules |
 | ▶️ **Inline Elements** | Forms, galleries and lists support |
 
-### 🪄 `.ask` — the smart command line
-
-Instead of memorizing exact command syntax, just describe what you want:
+### 🌙 `.afk` / 🗒 notes / ⏰ reminders
 
 ```text
-.ask mute this chat for an hour
-.ask show me who joined in the last week
+.afk stepping out, back in an hour
+.unafk
+
+.save greeting Hey! Sorry for the late reply.
+.note greeting
+.notes
+.delnote greeting
+
+.remind 2h Call the bank
+.reminders
+.delremind 3
 ```
 
-Nimbus looks at every command currently loaded from your modules, asks an LLM to pick
-the best match and the right arguments, and shows you a confirmation card before running
-anything (unless you turn that off). It works with any OpenAI-compatible API — OpenAI itself,
-or any compatible provider/proxy:
-
-```text
-.config SmartCommand api_key <your key>
-.config SmartCommand base_url <endpoint, defaults to https://api.openai.com/v1>
-.config SmartCommand model <model name, defaults to gpt-4o-mini>
-.config SmartCommand auto_run <true to skip the confirmation step>
-```
+`.afk` replies once per chat (per `.config AFK cooldown`, default 10 minutes) to PMs and
+mentions while you're away, and turns itself off the moment you send your next message.
+Notes are plain saved snippets. Reminders persist across restarts and fire as a message
+to the chat they were set in.
 
 ---
 
@@ -200,7 +202,6 @@ There's no separate hosted docs site — the userbot is self-documenting instead
 - `.help <module>` — shows commands and config options for one module
 - `.config <module>` — view and edit a module's settings
 - `.dlmod <url or name>` — install a module from a repo or a raw file URL
-- `.ask <what you want>` — let Nimbus find and run the right command for you
 
 ---
 
