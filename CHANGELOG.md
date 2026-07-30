@@ -10,6 +10,11 @@
    (`10m`, `2h`, `1d2h30m`, ...), restart-safe
  - Removed the `.ask` smart command router and the `.tldr` AI summary command —
    dropped the built-in dependency on an external AI provider
+ - `.dlmod` / `.dlm <name>` now installs from this repo's own [`modules/`](modules/)
+   catalog by default, instead of the original Heroku maintainer's module repo
+ - Added a first batch of catalog modules: `.broadcast` (+ `.bcadd`/`.bcdel`/`.bclist`),
+   `.purge`, `.calc`
+ - Added [`DEVELOPING.md`](DEVELOPING.md), a guide for writing and submitting modules
 
 ## ☁️ Nimbus 2.4.0
 

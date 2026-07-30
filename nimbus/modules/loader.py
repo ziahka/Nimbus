@@ -86,7 +86,7 @@ class LoaderMod(loader.Module):
         self.config = loader.ModuleConfig(
             loader.ConfigValue(
                 "MODULES_REPO",
-                "https://raw.githubusercontent.com/coddrago/modules/main",
+                "https://raw.githubusercontent.com/ziahka/Nimbus/master/modules",
                 lambda: self.strings["repo_config_doc"],
                 validator=loader.validators.Link(),
             ),
@@ -125,9 +125,7 @@ class LoaderMod(loader.Module):
     async def _async_init(self):
         modules = list(
             filter(
-                lambda x: not x.startswith(
-                    "https://raw.githubusercontent.com/coddrago/modules/main"
-                ),
+                lambda x: not x.startswith(self.config["MODULES_REPO"]),
                 utils.array_sum(
                     map(
                         lambda x: list(x.values()),

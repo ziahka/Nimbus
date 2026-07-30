@@ -201,7 +201,10 @@ There's no separate hosted docs site — the userbot is self-documenting instead
 - `.help` — lists every loaded module and command, with usage for each
 - `.help <module>` — shows commands and config options for one module
 - `.config <module>` — view and edit a module's settings
-- `.dlmod <url or name>` — install a module from a repo or a raw file URL
+- `.dlmod` / `.dlm <name>` — install a module by name from the [`modules/`](modules/)
+  catalog in this repo, or from any raw file URL / GitHub blob link
+- [`DEVELOPING.md`](DEVELOPING.md) — how to write your own module and submit it to
+  the catalog
 
 ---
 
