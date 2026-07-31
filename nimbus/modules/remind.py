@@ -33,30 +33,30 @@ class RemindMod(loader.Module):
     strings = {
         "name": "Remind",
         "usage": (
-            "⏰ <b>Usage:</b> <code>{prefix}remind &lt;time&gt; &lt;text&gt;</code>\n"
+            "<tg-emoji emoji-id=5877458226823302157>🕒</tg-emoji> <b>Usage:</b> <code>{prefix}remind &lt;time&gt; &lt;text&gt;</code>\n"
             "<i>Time examples: 10m, 2h, 1d, 1d2h30m</i>"
         ),
-        "set": "⏰ <b>Reminder #{id} set for {duration} from now.</b>",
-        "fired": "⏰ <b>Reminder!</b>\n{text}",
-        "no_reminders": "⏰ <b>No pending reminders.</b>",
-        "list_header": "⏰ <b>Pending reminders ({count}):</b>\n{items}",
-        "usage_del": "⏰ <b>Usage:</b> <code>{prefix}delremind &lt;id&gt;</code>",
-        "not_found": "⏰ <b>No pending reminder with id</b> <code>{id}</code>",
-        "deleted": "⏰ <b>Reminder #{id} cancelled.</b>",
+        "set": "<tg-emoji emoji-id=5877458226823302157>🕒</tg-emoji> <b>Reminder #{id} set for {duration} from now.</b>",
+        "fired": "<tg-emoji emoji-id=5877458226823302157>🕒</tg-emoji> <b>Reminder!</b>\n{text}",
+        "no_reminders": "<tg-emoji emoji-id=5877458226823302157>🕒</tg-emoji> <b>No pending reminders.</b>",
+        "list_header": "<tg-emoji emoji-id=5877458226823302157>🕒</tg-emoji> <b>Pending reminders ({count}):</b>\n{items}",
+        "usage_del": "<tg-emoji emoji-id=5877458226823302157>🕒</tg-emoji> <b>Usage:</b> <code>{prefix}delremind &lt;id&gt;</code>",
+        "not_found": "<tg-emoji emoji-id=5877458226823302157>🕒</tg-emoji> <b>No pending reminder with id</b> <code>{id}</code>",
+        "deleted": "<tg-emoji emoji-id=5877458226823302157>🕒</tg-emoji> <b>Reminder #{id} cancelled.</b>",
     }
 
     strings_ru = {
         "usage": (
-            "⏰ <b>Использование:</b> <code>{prefix}remind &lt;время&gt; &lt;текст&gt;</code>\n"
+            "<tg-emoji emoji-id=5877458226823302157>🕒</tg-emoji> <b>Использование:</b> <code>{prefix}remind &lt;время&gt; &lt;текст&gt;</code>\n"
             "<i>Примеры времени: 10m, 2h, 1d, 1d2h30m</i>"
         ),
-        "set": "⏰ <b>Напоминание #{id} установлено через {duration}.</b>",
-        "fired": "⏰ <b>Напоминание!</b>\n{text}",
-        "no_reminders": "⏰ <b>Нет активных напоминаний.</b>",
-        "list_header": "⏰ <b>Активные напоминания ({count}):</b>\n{items}",
-        "usage_del": "⏰ <b>Использование:</b> <code>{prefix}delremind &lt;id&gt;</code>",
-        "not_found": "⏰ <b>Нет напоминания с id</b> <code>{id}</code>",
-        "deleted": "⏰ <b>Напоминание #{id} отменено.</b>",
+        "set": "<tg-emoji emoji-id=5877458226823302157>🕒</tg-emoji> <b>Напоминание #{id} установлено через {duration}.</b>",
+        "fired": "<tg-emoji emoji-id=5877458226823302157>🕒</tg-emoji> <b>Напоминание!</b>\n{text}",
+        "no_reminders": "<tg-emoji emoji-id=5877458226823302157>🕒</tg-emoji> <b>Нет активных напоминаний.</b>",
+        "list_header": "<tg-emoji emoji-id=5877458226823302157>🕒</tg-emoji> <b>Активные напоминания ({count}):</b>\n{items}",
+        "usage_del": "<tg-emoji emoji-id=5877458226823302157>🕒</tg-emoji> <b>Использование:</b> <code>{prefix}delremind &lt;id&gt;</code>",
+        "not_found": "<tg-emoji emoji-id=5877458226823302157>🕒</tg-emoji> <b>Нет напоминания с id</b> <code>{id}</code>",
+        "deleted": "<tg-emoji emoji-id=5877458226823302157>🕒</tg-emoji> <b>Напоминание #{id} отменено.</b>",
     }
 
     @loader.command(

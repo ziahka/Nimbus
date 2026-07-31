@@ -325,7 +325,7 @@ settings:
   aliases_cleared: "<tg-emoji emoji-id=5197474765387864959>👍</tg-emoji> <b>Усі аліаси видалено</b>."
   no_alias: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Аліаса</b> <code>{}</code> <b>не існує</b>"
   db_cleared: "<tg-emoji emoji-id=5197474765387864959>👍</tg-emoji> <b>Базу очищена</b>"
-  nimbus: "{0} <b>{1}.{2}.{3}</b>\n\n<blockquote>🔗 <i>Build:</i> <a href=\"{4}\">{4}</a>\n⚙️ <i>Library:</i> {5}\n✨ <i>Ping:</i> {ping} ms\n✨ <i>Uptime:</i> {uptime}</blockquote>\n\n🎵 <i>{status_line}</i>"
+  nimbus: "{0} <b>{1}.{2}.{3}</b>\n\n<blockquote><tg-emoji emoji-id=4916086774649848789>🔗</tg-emoji> <i>Build:</i> <a href=\"{4}\">{4}</a>\n<tg-emoji emoji-id=5318933532825888187>⚙️</tg-emoji> <i>Library:</i> {5}\n<tg-emoji emoji-id=5134202243486057363>✨</tg-emoji> <i>Ping:</i> {ping} ms\n<tg-emoji emoji-id=5134202243486057363>✨</tg-emoji> <i>Uptime:</i> {uptime}</blockquote>\n\n🎵 <i>{status_line}</i>"
   _cls_doc: "Керування базовими налаштуваннями юзербота"
   confirm_cleardb: "⚠️ <b>Ви впевнені, що хочете зкинути базу даних?</b>"
   cleardb_confirm: "🗑 Очистити базу"

@@ -16,33 +16,33 @@ class NotesMod(loader.Module):
     strings = {
         "name": "Notes",
         "usage_save": (
-            "🗒 <b>Usage:</b> <code>{prefix}save &lt;name&gt; &lt;text&gt;</code> "
+            "<tg-emoji emoji-id=5870450390679425417>🗒</tg-emoji> <b>Usage:</b> <code>{prefix}save &lt;name&gt; &lt;text&gt;</code> "
             "or reply to a message with <code>{prefix}save &lt;name&gt;</code>"
         ),
-        "nothing_to_save": "🗒 <b>Nothing to save</b> — give text or reply to a message",
-        "saved": "🗒 <b>Note</b> <code>{name}</code> <b>saved.</b>",
-        "usage_note": "🗒 <b>Usage:</b> <code>{prefix}note &lt;name&gt;</code>",
-        "not_found": "🗒 <b>No note named</b> <code>{name}</code>",
-        "no_notes": "🗒 <b>No saved notes yet.</b> Save one with <code>{prefix}save &lt;name&gt; &lt;text&gt;</code>",
-        "notes_list": "🗒 <b>Saved notes ({count}):</b>\n{names}",
-        "deleted": "🗒 <b>Note</b> <code>{name}</code> <b>deleted.</b>",
+        "nothing_to_save": "<tg-emoji emoji-id=5870450390679425417>🗒</tg-emoji> <b>Nothing to save</b> — give text or reply to a message",
+        "saved": "<tg-emoji emoji-id=5870450390679425417>🗒</tg-emoji> <b>Note</b> <code>{name}</code> <b>saved.</b>",
+        "usage_note": "<tg-emoji emoji-id=5870450390679425417>🗒</tg-emoji> <b>Usage:</b> <code>{prefix}note &lt;name&gt;</code>",
+        "not_found": "<tg-emoji emoji-id=5870450390679425417>🗒</tg-emoji> <b>No note named</b> <code>{name}</code>",
+        "no_notes": "<tg-emoji emoji-id=5870450390679425417>🗒</tg-emoji> <b>No saved notes yet.</b> Save one with <code>{prefix}save &lt;name&gt; &lt;text&gt;</code>",
+        "notes_list": "<tg-emoji emoji-id=5870450390679425417>🗒</tg-emoji> <b>Saved notes ({count}):</b>\n{names}",
+        "deleted": "<tg-emoji emoji-id=5870450390679425417>🗒</tg-emoji> <b>Note</b> <code>{name}</code> <b>deleted.</b>",
     }
 
     strings_ru = {
         "usage_save": (
-            "🗒 <b>Использование:</b> <code>{prefix}save &lt;имя&gt; &lt;текст&gt;</code> "
+            "<tg-emoji emoji-id=5870450390679425417>🗒</tg-emoji> <b>Использование:</b> <code>{prefix}save &lt;имя&gt; &lt;текст&gt;</code> "
             "или ответом на сообщение <code>{prefix}save &lt;имя&gt;</code>"
         ),
-        "nothing_to_save": "🗒 <b>Нечего сохранять</b> — укажи текст или ответь на сообщение",
-        "saved": "🗒 <b>Заметка</b> <code>{name}</code> <b>сохранена.</b>",
-        "usage_note": "🗒 <b>Использование:</b> <code>{prefix}note &lt;имя&gt;</code>",
-        "not_found": "🗒 <b>Нет заметки с именем</b> <code>{name}</code>",
+        "nothing_to_save": "<tg-emoji emoji-id=5870450390679425417>🗒</tg-emoji> <b>Нечего сохранять</b> — укажи текст или ответь на сообщение",
+        "saved": "<tg-emoji emoji-id=5870450390679425417>🗒</tg-emoji> <b>Заметка</b> <code>{name}</code> <b>сохранена.</b>",
+        "usage_note": "<tg-emoji emoji-id=5870450390679425417>🗒</tg-emoji> <b>Использование:</b> <code>{prefix}note &lt;имя&gt;</code>",
+        "not_found": "<tg-emoji emoji-id=5870450390679425417>🗒</tg-emoji> <b>Нет заметки с именем</b> <code>{name}</code>",
         "no_notes": (
-            "🗒 <b>Пока нет сохранённых заметок.</b> Сохрани через "
+            "<tg-emoji emoji-id=5870450390679425417>🗒</tg-emoji> <b>Пока нет сохранённых заметок.</b> Сохрани через "
             "<code>{prefix}save &lt;имя&gt; &lt;текст&gt;</code>"
         ),
-        "notes_list": "🗒 <b>Сохранённые заметки ({count}):</b>\n{names}",
-        "deleted": "🗒 <b>Заметка</b> <code>{name}</code> <b>удалена.</b>",
+        "notes_list": "<tg-emoji emoji-id=5870450390679425417>🗒</tg-emoji> <b>Сохранённые заметки ({count}):</b>\n{names}",
+        "deleted": "<tg-emoji emoji-id=5870450390679425417>🗒</tg-emoji> <b>Заметка</b> <code>{name}</code> <b>удалена.</b>",
     }
 
     @loader.command(

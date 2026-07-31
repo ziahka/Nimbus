@@ -22,6 +22,13 @@
  - Restyled `.info` with the same closing tagline treatment
  - Both cards' tagline is configurable (`.config Settings status_line`,
    `.config NimbusInfo status_line`)
+ - Redrawn all 12 banner images (`assets/*.png`) with a glowing dusk-sky cloud scene —
+   soft rim lighting, stars, a moon, sparkle accents — generated procedurally via
+   [`tools/generate_banners.py`](tools/generate_banners.py) (Pillow + numpy, run through
+   `uv run --with pillow --with numpy`)
+ - Upgraded several plain emoji to premium/custom Telegram emoji across `.notes`,
+   `.remind`, `.broadcast`, and the `.nimbus` card, reusing emoji IDs already verified
+   elsewhere in this codebase
 
 ## ☁️ Nimbus 2.4.0
 

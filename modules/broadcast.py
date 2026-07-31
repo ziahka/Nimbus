@@ -21,27 +21,27 @@ class BroadcastMod(loader.Module):
 
     strings = {
         "name": "Broadcast",
-        "added": "📢 <b>This chat was added to the broadcast list.</b>",
-        "already_added": "📢 <b>This chat is already in the broadcast list.</b>",
-        "removed": "📢 <b>This chat was removed from the broadcast list.</b>",
-        "not_in_list": "📢 <b>This chat isn't in the broadcast list.</b>",
-        "empty_list": "📢 <b>Broadcast list is empty.</b> Add a chat with <code>{prefix}bcadd</code>",
-        "list_header": "📢 <b>Broadcast list ({count}):</b>\n{items}",
-        "usage": "📢 <b>Usage:</b> <code>{prefix}broadcast &lt;text&gt;</code>",
-        "sending": "📢 <b>Sending to {count} chats...</b>",
-        "done": "📢 <b>Sent to {ok} of {count} chats.</b>",
+        "added": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>This chat was added to the broadcast list.</b>",
+        "already_added": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>This chat is already in the broadcast list.</b>",
+        "removed": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>This chat was removed from the broadcast list.</b>",
+        "not_in_list": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>This chat isn't in the broadcast list.</b>",
+        "empty_list": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>Broadcast list is empty.</b> Add a chat with <code>{prefix}bcadd</code>",
+        "list_header": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>Broadcast list ({count}):</b>\n{items}",
+        "usage": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>Usage:</b> <code>{prefix}broadcast &lt;text&gt;</code>",
+        "sending": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>Sending to {count} chats...</b>",
+        "done": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>Sent to {ok} of {count} chats.</b>",
     }
 
     strings_ru = {
-        "added": "📢 <b>Этот чат добавлен в список рассылки.</b>",
-        "already_added": "📢 <b>Этот чат уже в списке рассылки.</b>",
-        "removed": "📢 <b>Этот чат убран из списка рассылки.</b>",
-        "not_in_list": "📢 <b>Этого чата нет в списке рассылки.</b>",
-        "empty_list": "📢 <b>Список рассылки пуст.</b> Добавь чат через <code>{prefix}bcadd</code>",
-        "list_header": "📢 <b>Список рассылки ({count}):</b>\n{items}",
-        "usage": "📢 <b>Использование:</b> <code>{prefix}broadcast &lt;текст&gt;</code>",
-        "sending": "📢 <b>Отправляю в {count} чатов...</b>",
-        "done": "📢 <b>Отправлено в {ok} из {count} чатов.</b>",
+        "added": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>Этот чат добавлен в список рассылки.</b>",
+        "already_added": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>Этот чат уже в списке рассылки.</b>",
+        "removed": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>Этот чат убран из списка рассылки.</b>",
+        "not_in_list": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>Этого чата нет в списке рассылки.</b>",
+        "empty_list": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>Список рассылки пуст.</b> Добавь чат через <code>{prefix}bcadd</code>",
+        "list_header": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>Список рассылки ({count}):</b>\n{items}",
+        "usage": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>Использование:</b> <code>{prefix}broadcast &lt;текст&gt;</code>",
+        "sending": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>Отправляю в {count} чатов...</b>",
+        "done": "<tg-emoji emoji-id=6019094432790354513>📢</tg-emoji> <b>Отправлено в {ok} из {count} чатов.</b>",
     }
 
     def __init__(self):
