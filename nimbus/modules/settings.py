@@ -17,11 +17,16 @@
 # 🔑 https://www.gnu.org/licenses/agpl-3.0.html
 
 import contextlib
+import logging
+import time
+
 import nimbustl
 from nimbustl.tl.types import Message, User
 
 from .. import loader, main, utils, version
 from ..inline.types import InlineCall
+
+logger = logging.getLogger(__name__)
 
 
 @loader.tds
@@ -42,6 +47,28 @@ class CoreMod(loader.Module):
                 "alias_emoji",
                 "<tg-emoji emoji-id=4974259868996207180>▪️</tg-emoji>",
                 "just emoji in .aliases",
+            ),
+            loader.ConfigValue(
+                "status_line",
+                "Floating above the clouds",
+                "Tagline shown at the bottom of .nimbus",
+                validator=loader.validators.String(),
+            ),
+            loader.ConfigValue(
+                "custom_template",
+                None,
+                lambda: (
+                    "Fully custom .nimbus card. Leave empty to use the built-in"
+                    " localized card. Available placeholders: {version}, {major},"
+                    " {minor}, {patch}, {build_url}, {library}, {ping}, {uptime},"
+                    " {status_line}, {branch}"
+                    + (
+                        "\n" + utils.config_placeholders()
+                        if utils.config_placeholders()
+                        else ""
+                    )
+                ),
+                validator=loader.validators.String(),
             ),
         )
 
@@ -95,6 +122,7 @@ class CoreMod(loader.Module):
         de_doc="Informationen über Nimbus",
     )
     async def nimbuscmd(self, message: Message):
+        start = time.perf_counter_ns()
 
         branch_text = ""
         if version.branch == "master":
@@ -108,15 +136,42 @@ class CoreMod(loader.Module):
         else:
             branch_text = self.strings["unstable"].format(version.branch)
 
+        if self.config["custom_template"]:
+            data = {
+                "version": ".".join(map(str, version.__version__)),
+                "major": version.__version__[0],
+                "minor": version.__version__[1],
+                "patch": version.__version__[2],
+                "build_url": utils.get_commit_url(),
+                "library": f"{nimbustl.__version__} #{nimbustl.tl.alltlobjects.LAYER}",
+                "ping": round((time.perf_counter_ns() - start) / 10**6, 3),
+                "uptime": utils.formatted_uptime(),
+                "status_line": utils.escape_html(self.config["status_line"]),
+                "branch": branch_text,
+            }
+            data = await utils.get_placeholders(data, self.config["custom_template"])
+            try:
+                text = self.config["custom_template"].format(**data)
+            except KeyError:
+                logger.exception("Missing placeholder in .nimbus custom_template")
+                text = "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji>"
+        else:
+            text = (
+                self.strings["nimbus"].format(
+                    "🪐 <b>Nimbus userbot</b>",
+                    *version.__version__,
+                    utils.get_commit_url(),
+                    f"{nimbustl.__version__} #{nimbustl.tl.alltlobjects.LAYER}",
+                    ping=round((time.perf_counter_ns() - start) / 10**6, 3),
+                    uptime=utils.formatted_uptime(),
+                    status_line=utils.escape_html(self.config["status_line"]),
+                )
+                + branch_text
+            )
+
         await utils.answer(
             message,
-            self.strings["nimbus"].format(
-                "🪐 <b>Nimbus userbot</b>",
-                *version.__version__,
-                utils.get_commit_url(),
-                f"{nimbustl.__version__} #{nimbustl.tl.alltlobjects.LAYER}",
-            )
-            + (branch_text),
+            text,
             file=main.BASE_PATH / "assets" / "nimbus_cmd.png",
             reply_to=getattr(message, "reply_to_msg_id", None),
         )

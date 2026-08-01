@@ -163,9 +163,19 @@ config.json
 *.mp3
 *.ogg
 *.m4a
-*.mp3
 *.avi
 !/assets/*.png
+
+# Secrets & credentials
+*.pem
+*.key
+*.crt
+*.p12
+.env.*
+secrets.json
+secrets.yml
+secrets.yaml
+credentials.json
 
 # Nimbus-specific rules
 .nimbus/
