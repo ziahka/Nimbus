@@ -1,6 +1,6 @@
 # Nimbus Changelog
 
-## ☁️ Nimbus 2.6.0
+## ☁️ Nimbus 1.0.0
 
  - Added a built-in chat/group moderation module: `.ban` / `.unban` / `.kick` / `.mute` /
    `.unmute` / `.promote` / `.restrict` / `.admins` / `.bots` / `.users` / `.flush` /
@@ -28,6 +28,10 @@
    `.config Tester custom_message` and `.config NimbusInfo custom_message` respectively;
    no changes needed there, documented here for discoverability)
  - Documented the new moderation commands in `README.md` / `README_RU.md`
+ - Fixed `patched_import` in `nimbus/loader.py` not redirecting `herokutl` imports to
+   the vendored `nimbustl` the way `hikkatl`/`telethon` already were — third-party
+   modules that `import herokutl` directly were silently loading a real, unrelated
+   PyPI package of that name instead of this fork's own client library
 
 ## ☁️ Nimbus 2.5.0
 
