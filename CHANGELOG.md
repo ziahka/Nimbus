@@ -1,5 +1,25 @@
 # Nimbus Changelog
 
+## ☁️ Nimbus 2.6.0
+
+ - Added a built-in chat/group moderation module: `.ban` / `.unban` / `.kick` / `.mute` /
+   `.unmute` / `.promote` / `.restrict` / `.admins` / `.bots` / `.users` / `.flush` /
+   `.owns` / `.inspect` / `.id` / `.rights` / `.dnd` / `.invite` / `.create` / `.leave` /
+   `.pin` / `.unpin` / `.dgc` / `.requests` — ships loaded by default, no `.dlmod` needed.
+   Commands ported from `chatmodule.py` by codrago ([@codrago_m](https://t.me/codrago_m),
+   https://github.com/coddrago/modules) and adapted for this fork: imports rewritten for
+   `nimbustl`, and the original's runtime dependency on a remotely-fetched library
+   (`xdlib.py`, pulled live from `coddrago/modules` on every startup) has been inlined
+   locally instead, so the module no longer talks to any third-party server
+ - Security re-audit: reconfirmed the previous hardening pass is intact (HTTP timeouts,
+   no shell string execution, no live third-party code fetch anywhere in core) and
+   extended it to the new moderation module (no `eval`/`exec`/shell calls, no unescaped
+   dynamic imports)
+ - `.gitignore`: added a dedicated secrets/credentials section (`*.pem`, `*.key`,
+   `*.crt`, `.env.*`, `secrets.json`/`.yml`/`.yaml`, `credentials.json`) and removed a
+   duplicate `*.mp3` entry
+ - Documented the new moderation commands in `README.md` / `README_RU.md`
+
 ## ☁️ Nimbus 2.5.0
 
  - Added `.afk` / `.unafk` — auto-replies while you're away, with per-chat cooldown and
@@ -29,6 +49,15 @@
  - Upgraded several plain emoji to premium/custom Telegram emoji across `.notes`,
    `.remind`, `.broadcast`, and the `.nimbus` card, reusing emoji IDs already verified
    elsewhere in this codebase
+ - Security pass: dropped every `.presets` entry hosted on `codrago.life` (including a
+   file literally named `DoxTool.py`) and the remaining `coddrago/modules` links
+   (one named `hardspam.py`) — these were third-party-controlled, mutable, unaudited
+   code that Nimbus offered to install with one tap
+ - Added a `timeout=` to every outgoing `requests.get` call that was missing one
+   (module downloads, avatar fetch, library fetch, language pack fetch) — an
+   unresponsive remote host could previously hang the request indefinitely
+ - Replaced a `os.system(f"cd {...} && ...")` shell string in the hard-update path with
+   the same argv-list `subprocess.run(...)` form used everywhere else in that file
 
 ## ☁️ Nimbus 2.4.0
 

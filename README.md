@@ -156,6 +156,7 @@ python3 -m nimbus
 | 🌙 **`.afk`** | Auto-replies while you're away, with per-chat cooldown |
 | 🗒 **`.save` / `.note`** | Saved text snippets you can recall by name |
 | ⏰ **`.remind`** | Self-reminders on a delay (`10m`, `2h`, `1d2h30m`, ...) |
+| 🛡 **Chat moderation** | Built-in `.ban` / `.mute` / `.kick` / `.promote` / `.restrict` and more — see below |
 | 🆕 **Latest Telegram Layer** | Support for forums and newest Telegram features |
 | 🔒 **Enhanced Security** | Native entity caching and targeted security rules |
 | 🎨 **UI/UX Improvements** | Modern interface and user experience |
@@ -184,6 +185,33 @@ python3 -m nimbus
 mentions while you're away, and turns itself off the moment you send your next message.
 Notes are plain saved snippets. Reminders persist across restarts and fire as a message
 to the chat they were set in.
+
+### 🛡 Chat moderation
+
+```text
+.ban -u @username -t 1d -r spam
+.unban -u @username
+.kick -u @username
+.mute -u @username -t 2h
+.unmute -u @username
+.promote -u @username -r "Moderator"
+.restrict -u @username -t 1h
+.admins
+.bots
+.users
+.flush
+.owns
+.inspect
+.id
+.dnd
+.invite -u @username
+.create -g "New group"
+.leave
+```
+
+A full set of group/channel management commands, ships as a built-in module (no `.dlmod`
+install needed). Commands that change chat permissions require you to already have the
+matching admin right in that chat — the bot won't grant itself anything it doesn't have.
 
 ---
 

@@ -174,6 +174,7 @@ class RemoteStorage:
                     "X-Nimbus-Commit-SHA": utils.get_git_hash(),
                     "X-Nimbus-User": str(self._client.tg_id),
                 },
+                timeout=15,
             )
             r.raise_for_status()
         except Exception:

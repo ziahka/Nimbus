@@ -368,6 +368,7 @@ class LoaderMod(loader.Module):
                 if self.config["basic_auth"]
                 else None
             ),
+            timeout=15,
         )
 
         if not str(res.status_code).startswith("2"):
@@ -1589,6 +1590,7 @@ class LoaderMod(loader.Module):
                     if self.config["basic_auth"]
                     else None
                 ),
+                timeout=15,
             )
             r.raise_for_status()
             if not r.text.strip():
