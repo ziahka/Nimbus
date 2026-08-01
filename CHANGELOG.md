@@ -18,6 +18,15 @@
  - `.gitignore`: added a dedicated secrets/credentials section (`*.pem`, `*.key`,
    `*.crt`, `.env.*`, `secrets.json`/`.yml`/`.yaml`, `credentials.json`) and removed a
    duplicate `*.mp3` entry
+ - `.nimbus` now supports a fully custom card via `.config Settings custom_template`
+   (placeholders: `{version}`, `{major}`, `{minor}`, `{patch}`, `{build_url}`,
+   `{library}`, `{ping}`, `{uptime}`, `{status_line}`, `{branch}`, plus any module-
+   registered custom placeholder) — leave it empty to keep the built-in localized card
+ - `.help` now supports a custom header line via `.config Help header_template`
+   (placeholders: `{count}`, `{hidden}`)
+ - (`.ping` and `.info` already had this exact full-template mechanism from before —
+   `.config Tester custom_message` and `.config NimbusInfo custom_message` respectively;
+   no changes needed there, documented here for discoverability)
  - Documented the new moderation commands in `README.md` / `README_RU.md`
 
 ## ☁️ Nimbus 2.5.0

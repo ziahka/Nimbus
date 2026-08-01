@@ -88,6 +88,16 @@ class Help(loader.Module):
                 lambda: self.strings["show_preview_in_help"],
                 validator=loader.validators.Boolean(),
             ),
+            loader.ConfigValue(
+                "header_template",
+                None,
+                lambda: (
+                    "Fully custom header line for .help. Leave empty to use the"
+                    " built-in localized header. Available placeholders: {count}"
+                    " (loaded modules), {hidden} (hidden modules)"
+                ),
+                validator=loader.validators.String(),
+            ),
         )
 
     def _get_banner_url(self, doc: str):
@@ -333,18 +343,28 @@ class Help(loader.Module):
             return
 
         hidden = self.get("hide", [])
-
-        reply = self.strings["all_header"].format(
-            len(self.allmodules.modules),
-            (
-                0
-                if force
-                else sum(
-                    module.__class__.__name__ in hidden
-                    for module in self.allmodules.modules
-                )
-            ),
+        hidden_count = (
+            0
+            if force
+            else sum(
+                module.__class__.__name__ in hidden for module in self.allmodules.modules
+            )
         )
+
+        if self.config["header_template"]:
+            try:
+                reply = self.config["header_template"].format(
+                    count=len(self.allmodules.modules), hidden=hidden_count
+                )
+            except KeyError:
+                logger.exception("Missing placeholder in .help header_template")
+                reply = self.strings["all_header"].format(
+                    len(self.allmodules.modules), hidden_count
+                )
+        else:
+            reply = self.strings["all_header"].format(
+                len(self.allmodules.modules), hidden_count
+            )
         shown_warn = False
 
         plain_ = []
