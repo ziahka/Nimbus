@@ -23,6 +23,7 @@ import contextlib
 import hashlib
 import logging
 import os
+from urllib.parse import urlparse
 
 import requests
 
@@ -34,6 +35,14 @@ logger = logging.getLogger(__name__)
 
 MAX_FILESIZE = 1024 * 1024 * 5  # 5 MB
 MAX_TOTALSIZE = 1024 * 1024 * 100  # 100 MB
+
+
+class InsecureModuleSourceError(Exception):
+    """Raised when a module would be downloaded over a non-TLS transport"""
+
+    def __init__(self, url: str):
+        super().__init__(f"Refusing to download module source over plain HTTP: {url}")
+        self.url = url
 
 
 class LocalStorage:
@@ -162,6 +171,11 @@ class RemoteStorage:
         :param auth: Optional authentication string in the format "username:password".
         :return: Module source code.
         """
+        if urlparse(url).scheme.lower() != "https":
+            # Whatever comes back from here is executed as Python. Over plain
+            # HTTP anyone on the path can rewrite it in flight.
+            raise InsecureModuleSourceError(url)
+
         url, repo, module_name = self._parse_url(url)
         try:
             r = await utils.run_sync(
@@ -172,7 +186,6 @@ class RemoteStorage:
                     "User-Agent": "Nimbus Userbot",
                     "X-Nimbus-Version": ".".join(map(str, __version__)),
                     "X-Nimbus-Commit-SHA": utils.get_git_hash(),
-                    "X-Nimbus-User": str(self._client.tg_id),
                 },
                 timeout=15,
             )

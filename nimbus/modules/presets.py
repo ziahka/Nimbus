@@ -35,65 +35,19 @@ NUM_ROWS = 2
 
 ROW_SIZE = 4
 
+# Presets are named by module, not by URL, and resolved at runtime against the
+# repo the owner has configured in `.config Loader MODULES_REPO` — which is this
+# fork's own catalog by default.
+#
+# They used to be a hardcoded list of ~50 links to third-party repos. That meant
+# `.presets` offered to install, with one tap, mutable code from accounts the
+# Nimbus owner has no relationship with and cannot audit: whoever controlled
+# those repos could change any file at any time and it would land in the next
+# person's userbot with full account access. Presets now never reach outside the
+# configured repo.
 PRESETS = {
-    "fun": [
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/aniquotes.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/artai.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/inline_ghoul.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/lovemagic.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/mindgame.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/moonlove.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/scrolller.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/tictactoe.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/trashguy.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/truth_or_dare.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/sticks.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/premium_sticks.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/magictext.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/quotes.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/IrisLab.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/arts.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/Complements.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/Compliments.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/mazemod.py",
-        "https://mods.kok.gay/yg_quotes",
-    ],
-    "chat": [
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/activists.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/banstickers.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/inactive.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/keyword.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/tagall.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/BanMedia.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/swmute.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/filter.py",
-        "https://raw.githubusercontent.com/SenkoGuardian/SenModules/refs/heads/My-Modules/Gemini.py",
-        "https://raw.githubusercontent.com/yummy1gay/modules/main/yg_checks.py",
-    ],
-    "service": [
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/account_switcher.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/surl.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/httpsc.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/img2pdf.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/latex.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/pollplot.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/sticks.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/temp_chat.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/vtt.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/accounttime.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/searx.py",
-        "https://raw.githubusercontent.com/Ruslan-Isaev/modules/refs/heads/main/whois.py",
-        "https://raw.githubusercontent.com/radiocycle/Modules/refs/heads/master/Neofetch.py",
-    ],
-    "downloaders": [
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/uploader.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/web2file.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/instsave.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/tikcock.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/downloader.py",
-        "https://github.com/amm1edev/ame_repo/raw/refs/heads/main/dl_yt_previews.py",
-        "https://raw.githubusercontent.com/TheKsenon/MyHikkaModules/main/kuploader.py",
-    ],
+    "fun": ["calc", "textfx"],
+    "chat": ["broadcast", "purge"],
 }
 
 
@@ -102,6 +56,16 @@ class Presets(loader.Module):
     """Suggests new Nimbus users a packs of modules to load"""
 
     strings = {"name": "Presets"}
+
+    def _preset_links(self, preset: str) -> list[str]:
+        """
+        Resolve a preset's module names against the configured repo
+
+        Nothing outside `MODULES_REPO` is ever offered here, so a preset can
+        only ever install code from a repo the owner already trusts.
+        """
+        repo = self.lookup("LoaderMod").config["MODULES_REPO"].rstrip("/")
+        return [f"{repo}/{module}.py" for module in PRESETS.get(preset, [])]
 
     async def client_ready(self):
         self._markup_gen = functools.partial(
@@ -148,10 +112,10 @@ class Presets(loader.Module):
         to_remove = to_remove or []
         to_buttons = [
             (indx, link)
-            for indx, link in enumerate(PRESETS[preset])
+            for indx, link in enumerate(self._preset_links(preset))
             if not self._is_installed(link)
         ]
-        to_install = PRESETS[preset].copy()
+        to_install = self._preset_links(preset)
         for index in sorted(to_remove, reverse=True):
             to_install.pop(index)
 
@@ -221,7 +185,7 @@ class Presets(loader.Module):
                                     ),
                                     int(self._is_installed(link)),
                                 )
-                                for link in PRESETS[preset]
+                                for link in self._preset_links(preset)
                             ],
                             key=lambda x: x[1],
                             reverse=True,
@@ -310,7 +274,7 @@ class Presets(loader.Module):
                                     ),
                                     int(self._is_installed(link)),
                                 )
-                                for link in PRESETS[preset]
+                                for link in self._preset_links(preset)
                             ],
                             key=lambda x: x[1],
                             reverse=True,

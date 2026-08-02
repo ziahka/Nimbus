@@ -586,6 +586,7 @@ loader:
   repo_config_doc: "モジュールリポジトリへのURL"
   avail_header: "<tg-emoji emoji-id=5440551785284510215>🎢</tg-emoji> <b>リポジトリからのモジュール</b>"
   no_module: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>モジュールはリポジトリで利用できません。</b>"
+  insecure_url: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>プレーンHTTPでのモジュールのダウンロードを拒否しました。</b>\n\n<i>モジュールのソースはコードとして実行されます。<code>https://</code> のリンクを使用してください。</i>"
   no_file: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>ファイルが見つかりません</b>"
   provide_module: "<tg-emoji emoji-id=5312383351217201533>⚠️</tg-emoji> <b>読み込むモジュールを提供してください</b>"
   bad_unicode: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>モジュール内のUnicode形式が無効です</b>"

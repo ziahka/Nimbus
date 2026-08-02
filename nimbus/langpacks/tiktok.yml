@@ -570,6 +570,7 @@ loader:
   add_repo_config_doc: "Доп. репозитории"
   avail_header: "<tg-emoji emoji-id=5440551785284510215>🎢</tg-emoji> <b>Офф. модули</b>"
   no_module: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Нет такого в репо.</b>"
+  insecure_url: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Не, по http качать не буду.</b>\n\n<i>Это код, его любой по пути подменит. Кидай <code>https://</code>.</i>"
   no_file: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Файл потерялся</b>"
   provide_module: "<tg-emoji emoji-id=5312383351217201533>⚠️</tg-emoji> <b>Че качать то?</b>"
   bad_unicode: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Кодировка кривая</b>"

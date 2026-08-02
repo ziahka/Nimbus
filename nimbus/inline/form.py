@@ -272,19 +272,26 @@ class Form(InlineUnit):
             return False
 
         if isinstance(message, Message) and not silent:
+            status_text = (
+                utils.get_platform_emoji()
+                if self._client.nimbus_me.premium
+                else "🪐"
+            ) + self.translator.getkey("inline.opening_form")
+
             try:
-                status_message = await (
-                    message.edit if message.out else message.respond
-                )(
-                    (
-                        utils.get_platform_emoji()
-                        if self._client.nimbus_me.premium
-                        else "🪐"
+                # `Message.edit` has no `reply_to` — passing it raised a TypeError on
+                # every single outgoing command, so the "Opening form..." status was
+                # never actually shown. Only `respond` takes it.
+                status_message = (
+                    await message.edit(status_text)
+                    if message.out
+                    else await message.respond(
+                        status_text,
+                        reply_to=utils.get_topic(message),
                     )
-                    + self.translator.getkey("inline.opening_form"),
-                    **({"reply_to": utils.get_topic(message)} if message.out else {}),
                 )
             except Exception:
+                logger.debug("Couldn't post the form status message", exc_info=True)
                 status_message = None
         else:
             status_message = None
@@ -385,8 +392,7 @@ class Form(InlineUnit):
         self._units[unit_id]["message_id"] = m.id
 
         if isinstance(message, Message) and message.out:
-            with contextlib.suppress(Exception):
-                await message.delete()
+            await self._delete_caller(message)
 
         if status_message and not message.out:
             with contextlib.suppress(Exception):

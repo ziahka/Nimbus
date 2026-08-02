@@ -585,6 +585,7 @@ loader:
   repo_config_doc: "URL 2 4 m0dul3 r3p0"
   avail_header: "<tg-emoji emoji-id=5440551785284510215>🎢</tg-emoji> <b>M0dul35 fr0m r3p0</b>"
   no_module: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>M0dul3 n07 4v41l4bl3 1n r3p0.</b>"
+  insecure_url: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>R3fu51ng 70 d0wnl04d 4 m0dul3 0v3r pl41n H77P.</b>\n\n<i>M0dul3 50urc3 15 3x3cu73d 45 c0d3. U53 4n <code>https://</code> l1nk.</i>"
   no_file: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>F1l3 n07 f0und</b>"
   provide_module: "<tg-emoji emoji-id=5312383351217201533>⚠️</tg-emoji> <b>Pr0v1d3 4 m0dul3 2 l04d</b>"
   bad_unicode: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>1nv4l1d Un1c0d3 f0rm4771ng 1n m0dul3</b>"

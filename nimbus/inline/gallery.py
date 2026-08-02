@@ -258,19 +258,24 @@ class Gallery(InlineUnit):
         }
 
         if isinstance(message, Message) and not silent:
+            status_text = (
+                utils.get_platform_emoji()
+                if self._client.nimbus_me.premium
+                else "🪐"
+            ) + self.translator.getkey("inline.opening_gallery")
+
             try:
-                status_message = await (
-                    message.edit if message.out else message.respond
-                )(
-                    (
-                        utils.get_platform_emoji()
-                        if self._client.nimbus_me.premium
-                        else "🪐"
+                # `Message.edit` takes no `reply_to` — see the same fix in form.py
+                status_message = (
+                    await message.edit(status_text)
+                    if message.out
+                    else await message.respond(
+                        status_text,
+                        reply_to=utils.get_topic(message),
                     )
-                    + self.translator.getkey("inline.opening_gallery"),
-                    **({"reply_to": utils.get_topic(message)} if message.out else {}),
                 )
             except Exception:
+                logger.debug("Couldn't post the gallery status message", exc_info=True)
                 status_message = None
         else:
             status_message = None
@@ -322,8 +327,7 @@ class Gallery(InlineUnit):
         self._units[unit_id]["message_id"] = m.id
 
         if isinstance(message, Message) and message.out:
-            with contextlib.suppress(Exception):
-                await message.delete()
+            await self._delete_caller(message)
 
         if status_message and not message.out:
             with contextlib.suppress(Exception):

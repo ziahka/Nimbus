@@ -157,6 +157,9 @@ python3 -m nimbus
 | 🗒 **`.save` / `.note`** | Saved text snippets you can recall by name |
 | ⏰ **`.remind`** | Self-reminders on a delay (`10m`, `2h`, `1d2h30m`, ...) |
 | 🛡 **Chat moderation** | Built-in `.ban` / `.mute` / `.kick` / `.promote` / `.restrict` and more — see below |
+| 🖥 **`.neofetch`** | A neofetch-style card for the machine Nimbus runs on, with live CPU/RAM/disk bars |
+| 📈 **`.chatstat`** | Chat statistics: top-poster leaderboard, media breakdown, 24-hour activity sparkline |
+| 👀 **`.whois`** | Detailed card for any user, chat or channel — IDs, badges, counters, bio |
 | 🆕 **Latest Telegram Layer** | Support for forums and newest Telegram features |
 | 🔒 **Enhanced Security** | Native entity caching and targeted security rules |
 | 🎨 **UI/UX Improvements** | Modern interface and user experience |
@@ -212,6 +215,44 @@ to the chat they were set in.
 A full set of group/channel management commands, ships as a built-in module (no `.dlmod`
 install needed). Commands that change chat permissions require you to already have the
 matching admin right in that chat — the bot won't grant itself anything it doesn't have.
+
+### 🖥 `.neofetch` / 📈 `.chatstat` / 👀 `.whois`
+
+```text
+.neofetch          # or .sys
+.chatstat          # or .cstat — scans .config Stats default_limit messages
+.chatstat 5000     # scan a specific number
+.whois             # or .wi — the current chat
+.whois @username   # a user, chat or channel by @username or id
+```
+
+`.neofetch` draws a card for the host: OS, kernel, Python and Nimbus versions, uptime,
+core count, process RSS, plus live CPU/RAM/disk bars. Re-skin it entirely with
+`.config SysInfo custom_template`. `.chatstat` reads back through the current chat and
+renders a top-poster leaderboard with bars and percentages, a media breakdown by type,
+and a 24-hour activity sparkline. `.whois` works on an argument, on a reply, or on the
+current chat when given neither.
+
+The [`textfx`](modules/textfx.py) catalog module (`.dlmod textfx`) adds `.type` —
+a typewriter animation — along with `.mock`, `.flip`, `.wide`, `.bubble` and `.spaced`.
+
+### 💻 Code evaluation
+
+```text
+.e 2 + 2                     # Python, in-process
+.ec / .ecpp / .ers / .eg     # C, C++, Rust, Go
+.enode / .ets                # Node.js, TypeScript (deno)
+.ephp / .eruby / .elua       # PHP, Ruby, Lua
+.eperl / .ejava / .ehs       # Perl, Java, Haskell
+.esh                         # Bash
+.ebf ++++++++[>++++...       # Brainf*ck, built in
+.esql select 1 + 1           # in-memory SQLite, built in
+.elangs                      # which toolchains this machine actually has
+```
+
+Every command takes its code as an argument or from the message you reply to. The
+compiled languages need their toolchain installed — `.elangs` shows you which are
+present. `.ebf`, `.esql` and `.e` need nothing at all.
 
 ---
 

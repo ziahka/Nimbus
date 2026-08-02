@@ -153,7 +153,10 @@ class Utils(InlineUnit):
 
                     match True:
                         case _ if "url" in button:
-                            if not utils.check_url(button["url"]):
+                            # `tg://` deep links are valid button targets too
+                            if not utils.check_url(
+                                button["url"], ("http", "https", "tg")
+                            ):
                                 logger.warning(
                                     "Button have not been added to form, "
                                     "because its url is invalid"

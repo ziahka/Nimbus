@@ -315,7 +315,10 @@ class Database(dict):
                     _content_channel_id,
                     file=message,
                     force_document=True,
-                    message_thread_id=_assets_topic_id,
+                    # `send_message` has no `message_thread_id` — posting into a
+                    # forum topic is `reply_to`, exactly as the branch above does.
+                    # As written this raised TypeError for every non-Message asset.
+                    reply_to=_assets_topic_id,
                 )
             ).id
         )

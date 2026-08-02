@@ -31,6 +31,12 @@ if typing.TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+# Thumbnail for the inline help entries. Left empty on purpose: this used to
+# hotlink a third-party icon CDN, which quietly told that CDN every time anyone
+# opened the inline menu, from whatever IP Nimbus runs on. Modules can still set
+# their own via `nimbus_meta_pic` / `thumb_url`.
+INLINE_HELP_THUMB: str | None = None
+
 
 class Events(InlineUnit):
     async def _message_handler(self: "InlineManager", message):
@@ -417,7 +423,6 @@ class Events(InlineUnit):
             except Exception:
                 thumb = None
 
-            thumb = thumb or "https://img.icons8.com/fluency/50/000000/info-squared.png"
 
             _help += [
                 (
@@ -457,9 +462,7 @@ class Events(InlineUnit):
                         text=self.translator.getkey("inline.no_inline_cmds_msg"),
                         parse_mode="HTML",
                         link_preview=False,
-                        thumb=self._web_document(
-                            "https://img.icons8.com/fluency/50/000000/info-squared.png"
-                        ),
+                        thumb=self._web_document(INLINE_HELP_THUMB),
                         id=utils.rand(20),
                     )
                 ],
@@ -481,9 +484,7 @@ class Events(InlineUnit):
                     ),
                     parse_mode="HTML",
                     link_preview=False,
-                    thumb=self._web_document(
-                        "https://img.icons8.com/fluency/50/000000/info-squared.png"
-                    ),
+                    thumb=self._web_document(INLINE_HELP_THUMB),
                     id=utils.rand(20),
                 )
             ]

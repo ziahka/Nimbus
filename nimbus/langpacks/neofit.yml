@@ -587,6 +587,7 @@ loader:
   repo_config_doc: "Repo URL"
   avail_header: "<tg-emoji emoji-id=5440551785284510215>🎢</tg-emoji> <b>Mods in Repo</b>"
   no_module: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Package not found.</b>"
+  insecure_url: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Refusing insecure package source.</b>\n\n<i>Package source is executed as code. Use an <code>https://</code> link.</i>"
   no_file: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>FileNotFoundError</b>"
   provide_module: "<tg-emoji emoji-id=5312383351217201533>⚠️</tg-emoji> <b>Argument 'module' required</b>"
   bad_unicode: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>UnicodeDecodeError</b>"

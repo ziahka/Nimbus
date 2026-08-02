@@ -46,7 +46,7 @@ from nimbustl.tl.functions.channels import JoinChannelRequest
 from nimbustl.tl.types import Channel, InputMediaWebPage
 
 from .. import loader, main, utils
-from .._local_storage import RemoteStorage
+from .._local_storage import InsecureModuleSourceError, RemoteStorage
 from ..inline.types import InlineCall
 from ..types import CoreOverwriteError, CoreUnloadError
 
@@ -293,7 +293,7 @@ class LoaderMod(loader.Module):
             return
 
         repos = [self.config["MODULES_REPO"]] + self.config["ADDITIONAL_REPOS"]
-        repos = [r for r in repos if r.startswith("http")]
+        repos = [r for r in repos if self._is_secure_repo(r)]
         buttons = [
             [
                 {
@@ -354,8 +354,22 @@ class LoaderMod(loader.Module):
         logger.debug("Loading modules: %s", todo)
         return todo
 
+    @staticmethod
+    def _is_secure_repo(repo: str) -> bool:
+        """
+        Whether a repo can be trusted to serve executable module source
+
+        The repo listing decides which files get downloaded and run, so it needs
+        the same TLS guarantee the modules themselves do.
+        """
+        return isinstance(repo, str) and urlparse(repo).scheme.lower() == "https"
+
     async def _get_repo(self, repo: str) -> str:
         repo = repo.strip("/")
+
+        if not self._is_secure_repo(repo):
+            logger.warning("Skipping non-HTTPS module repo %s", repo)
+            return []
 
         if self._links_cache.get(repo, {}).get("exp", 0) >= time.time():
             return self._links_cache[repo]["data"]
@@ -399,7 +413,7 @@ class LoaderMod(loader.Module):
                 [self.config["MODULES_REPO"]]
                 + ([] if only_primary else self.config["ADDITIONAL_REPOS"])
             )
-            if repo.startswith("http")
+            if self._is_secure_repo(repo)
         }
 
     async def get_links_list(self) -> list[str]:
@@ -414,6 +428,14 @@ class LoaderMod(loader.Module):
                 await self.get_links_list(),
             ),
             False,
+        )
+
+    def _is_configured_repo(self, url: str) -> bool:
+        """Whether `url` lives on one of the repos the owner configured"""
+        repos = [self.config["MODULES_REPO"], *self.config["ADDITIONAL_REPOS"]]
+        return any(
+            isinstance(repo, str) and url.startswith(repo.rstrip("/") + "/")
+            for repo in repos
         )
 
     async def download_and_install(
@@ -453,7 +475,23 @@ class LoaderMod(loader.Module):
                 )
 
             try:
-                r = await self._storage.fetch(url, auth=self.config["basic_auth"])
+                r = await self._storage.fetch(
+                    url,
+                    # Only hand the configured credentials to the hosts they
+                    # were configured for — an arbitrary `.dlmod <url>` must
+                    # not be able to harvest them.
+                    auth=(
+                        self.config["basic_auth"]
+                        if self._is_configured_repo(url)
+                        else None
+                    ),
+                )
+            except InsecureModuleSourceError:
+                logger.warning("Refused insecure module source %s", url)
+                if message is not None:
+                    await utils.answer(message, self.strings["insecure_url"])
+
+                return MODULE_LOADING_FAILED
             except requests.exceptions.HTTPError as e:
                 logger.warning(
                     "Failed to download module %s from %s: %s",

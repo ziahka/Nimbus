@@ -299,6 +299,32 @@ class InlineUnit:
     def __init__(self):
         """Made just for type specification."""
 
+    async def _delete_caller(self: "InlineManager", message: types.Message) -> None:
+        """
+        Remove the command message a form/list/gallery was opened from
+
+        `Message.delete()` first resolves the message's input chat, which fails
+        outright whenever that entity isn't cached yet — a fresh session, or a
+        channel Nimbus has not talked in before. That left the command sitting in
+        the chat next to the unit it opened. `peer_id` is always on the message,
+        so retry through the client with it before giving up.
+        """
+        try:
+            await message.delete()
+            return
+        except Exception:
+            logger.debug("Message.delete() failed, retrying by peer", exc_info=True)
+
+        try:
+            await self._client.delete_messages(message.peer_id, [message.id])
+        except Exception:
+            logger.warning(
+                "Couldn't delete the command message %s in %s",
+                message.id,
+                message.peer_id,
+                exc_info=True,
+            )
+
 
 class BotMessage(_MessageProxy):
     pass

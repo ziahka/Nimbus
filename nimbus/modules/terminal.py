@@ -33,8 +33,12 @@ from .. import loader, utils
 
 logger = logging.getLogger(__name__)
 
-BANNER_OK = "https://x0.at/grz4.jpg"
-BANNER_BAD = "https://x0.at/4AAH.jpg"
+# Thumbnails for the inline `.terminal` confirmation cards. These used to point
+# at x0.at — an anonymous, ephemeral file host: the images could be replaced or
+# expire at any time, and every inline query leaked a request there. Leaving
+# them unset simply renders the cards without a thumbnail.
+BANNER_OK: str | None = None
+BANNER_BAD: str | None = None
 
 
 def hash_msg(message):

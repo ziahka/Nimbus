@@ -195,16 +195,28 @@ def remove_html(text: str, escape: bool = False, keep_emojis: bool = False) -> s
     )
 
 
-def check_url(url: str) -> bool:
+ALLOWED_URL_SCHEMES = frozenset({"http", "https"})
+
+
+def check_url(url: str, /, schemes: typing.Iterable[str] = ALLOWED_URL_SCHEMES) -> bool:
     """
     Statically checks url for validity
+
+    Only `http` and `https` are accepted by default — a bare netloc check also
+    lets through `file://`, `ftp://`, `gopher://` and friends, which end up in
+    config values and download paths. Callers that legitimately accept other
+    schemes (Telegram deep links, for instance) pass them in explicitly.
+
     :param url: URL to check
+    :param schemes: Schemes to accept
     :return: True if valid, False otherwise
     """
     try:
-        return bool(urlparse(url).netloc)
+        parsed = urlparse(url)
     except Exception:
         return False
+
+    return parsed.scheme.lower() in set(schemes) and bool(parsed.netloc)
 
 
 def get_link(user: User | Channel, /) -> str:

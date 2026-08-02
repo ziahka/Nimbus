@@ -586,6 +586,7 @@ loader:
   repo_config_doc: "UWW to a moduwe wepo"
   avail_header: "<tg-emoji emoji-id=5440551785284510215>🎢</tg-emoji> <b>Moduwes fwom wepo</b>"
   no_module: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Moduwe nyot avaiwabwe in wepo.</b>"
+  insecure_url: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Wefusing to downwoad a moduwe ovew pwain HTTP >_<</b>\n\n<i>Moduwe souwce is executed as code, anyone couwd wewwite it~ Use an <code>https://</code> wink pwease!</i>"
   no_file: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Fiwe nyot found</b>"
   provide_module: "<tg-emoji emoji-id=5312383351217201533>⚠️</tg-emoji> <b>Pwovide a moduwe to woad</b>"
   bad_unicode: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Invawid Unyicode fowmatting in moduwe</b>"

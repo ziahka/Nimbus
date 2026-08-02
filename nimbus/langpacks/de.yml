@@ -452,7 +452,7 @@ updater:
   installing: "<tg-emoji emoji-id=5208622108191506906>🕗</tg-emoji> <b>Updates werden installiert...</b>"
   success: "<tg-emoji emoji-id=5208661316947955396>⏱</tg-emoji> <b>Neustart erfolgreich! {}</b>\n<i>Die Module werden jedoch noch geladen...</i>\n<i>Der Neustart dauerte {} Sekunden</i>"
   full_success: "<tg-emoji emoji-id=6028215594707324419>👍</tg-emoji> <b>Der Userbot ist vollständig geladen! {}</b>\n<i>Der vollständige Neustart dauerte {} Sekunden.</i>"
-  ub_stop: "Dein {} wurde gestoppt!"
+  ub_stop: "Dein {emoji} wurde gestoppt!"
   full_fail: "<tg-emoji emoji-id=5210952531676504517>❌</tg-emoji> <b>Der Userbot ist vollständig geladen, aber ein Fehler ist aufgetreten! {}\n<i>Der vollständige Neustart dauerte {} Sekunden\n{} Module konnten nicht geladen werden</i>"
   secure_boot_complete: "<tg-emoji emoji-id=5472308992514464048>🔐</tg-emoji> <b>Sicherer Start abgeschlossen! {}</b>\n<i>Der Neustart dauerte {} Sekunden</i>"
   secure_boot_fail: "<tg-emoji emoji-id=5472308992514464048>🔐</tg-emoji> <b>Sicherer Start abgeschlossen, aber ein Fehler ist aufgetreten! {}</b>\n<i>Der Neustart dauerte {} Sekunden\n{} Module konnten nicht geladen werden</i>"
@@ -570,6 +570,7 @@ loader:
   add_repo_config_doc: "Zusätzliche Repositories"
   avail_header: "<tg-emoji emoji-id=5440551785284510215>🎢</tg-emoji> <b>Offizielle Module aus dem Repository</b>"
   no_module: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Modul ist im Repository nicht verfügbar.</b>"
+  insecure_url: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Abgelehnt: Modul-Download über einfaches HTTP.</b>\n\n<i>Modulquellcode wird ausgeführt — jeder im Netzwerkpfad könnte ihn unterwegs ersetzen. Nutze einen <code>https://</code>-Link.</i>"
   no_file: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Datei nicht gefunden</b>"
   provide_module: "<tg-emoji emoji-id=5312383351217201533>⚠️</tg-emoji> <b>Geben Sie ein Modul zum Download an</b>"
   bad_unicode: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Ungültige Modulkodierung</b>"
@@ -643,8 +644,8 @@ loader:
   _cmd_doc_ml: <module> - Modul als Datei senden
   result: "<tg-emoji emoji-id=5337183664630709422>🔎</tg-emoji> <b>Suchergebnis für</b> <code>{query}</code>\n\n<tg-emoji emoji-id=5258270535710317499>📦</tg-emoji> <b>{name}</b> von <b>{dev}</b>\n<tg-emoji emoji-id=5879813604068298387>ℹ️</tg-emoji> <i>{cls_doc}</i>\n<tg-emoji emoji-id=5372981976804366741>🤖</tg-emoji> <b>Befehle:</b>\n{commands}\n\n<tg-emoji emoji-id=5188377234380954537>🪐</tg-emoji> <code>{prefix}dlmod {mhash}</code>"
   finding_module_in_repos: <tg-emoji emoji-id=5188377234380954537>🪐</tg-emoji> <b>Suche Modul in Repositories...</b>
-  modules_unloaded: <tg-emoji emoji-id=5118861066981344121>✅</tg-emoji> <b>Entladene Module:</b> {}
-  modules_not_unloaded: <tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Nicht entladen:</b> {}
+  modules_unloaded: "<tg-emoji emoji-id=5118861066981344121>✅</tg-emoji> <b>{unloaded_num} Module entladen:</b>\n<blockquote expandable>{unloaded}</blockquote>"
+  modules_not_unloaded: "<tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>{not_unloaded} Module konnten nicht entladen werden.</b>\n<blockquote expandable>{errors}</blockquote>"
   not_subscribed: <tg-emoji emoji-id=5210952531676504517>🚫</tg-emoji> <b>Du musst zuerst den Kanal des Moduls abonnieren</b>
   verify_required: "<tg-emoji emoji-id=5188463524568926712>⚠️</tg-emoji> <b>Um die Möglichkeit zur Installation von Drittanbietermodulen freizuschalten, schließen Sie den Test in <a href=\"https://t.me/{}?start=lm_verify\">Ihrem Bot</a></b> ab"
 translations:
